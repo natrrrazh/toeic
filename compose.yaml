@@ -1,0 +1,27 @@
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Asia/Ho_Chi_Minh
+      - TZ=Asia/Ho_Chi_Minh
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - qdrant
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  n8n_data:
+  qdrant_data:

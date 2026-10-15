@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TOEIC Nova | Smart Learning</title>
+
+<style>
+
+:root {
+
+  --bg:#090b14; --panel:#121628; --panel2:#191f34;
+
+  --line:#292f49; --text:#f5f6ff; --muted:#929ab8;
+
+  --purple:#a084ff; --cyan:#5de7ef; --green:#68e6ac;
+
+}
+
+* { box-sizing:border-box; }
+
+body {
+
+  margin:0; background:radial-gradient(ellipse at 75% 0%,#29204b 0%,transparent 35%),var(--bg);
+
+  color:var(--text); font:14px Arial,sans-serif;
+
+}
+
+button,input,select { font:inherit; }
+
+button { cursor:pointer; }
+
+.app { display:flex; min-height:100vh; }
+
+aside {
+
+  width:225px; padding:22px 14px; background:#0d101c;
+
+  border-right:1px solid var(--line); flex-shrink:0;
+
+}
+
+.logo { font-size:20px; font-weight:bold; padding:10px; margin-bottom:25px; }
+
+.logo span { color:var(--cyan); }
+
+.logo small { display:block; font-size:9px; letter-spacing:2px; color:var(--muted); margin-top:6px; }
+
+nav { display:grid; gap:5px; }
+
+nav button {
+
+  text-align:left; padding:13px 12px; color:var(--muted);
+
+  background:transparent; border:1px solid transparent; border-radius:10px;
+
+}
+
+nav button:hover,nav button.active {
+
+  color:white; background:#a084ff18; border-color:#a084ff44;
+
+}
+
+main { flex:1; min-width:0; padding:28px; max-width:1500px; margin:auto; width:100%; }
+
+header { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:23px; }
+
+.eyebrow { color:var(--cyan); letter-spacing:2px; font-size:10px; font-weight:bold; }
+
+h1 { font-size:clamp(23px,3vw,32px); margin:9px 0; }
+
+h2 { font-size:20px; margin:0 0 8px; }
+
+h3 { font-size:14px; margin:0 0 8px; }
+
+p { line-height:1.7; }
+
+.muted,small { color:var(--muted); }
+
+.avatar { background:linear-gradient(135deg,var(--purple),var(--cyan)); padding:12px 15px; border-radius:12px; font-weight:bold; }
+
+.hero {
+
+  border:1px solid #8d73e855; border-radius:18px; padding:27px;
+
+  background:linear-gradient(110deg,#211a40,#151b30 65%,#103039);
+
+  margin-bottom:18px;
+
+}
+
+.tag { color:#c7b9ff; background:#a084ff22; padding:7px 10px; border-radius:7px; font-size:10px; }
+
+.hero h2 { font-size:27px; margin-top:18px; }
+
+.hero p { max-width:620px; color:#c0c5dc; }
+
+.btn {
+
+  border:0; padding:11px 15px; border-radius:9px;
+
+  color:white; font-weight:bold; background:linear-gradient(100deg,#9068ff,#637cff);
+
+}
+
+.btn.secondary { background:#1b2136; border:1px solid var(--line); }
+
+.btn:hover { filter:brightness(1.13); }
+
+.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 26px; }
+
+.stat,.panel,.module {
+
+  border:1px solid var(--line); border-radius:14px;
+
+  background:linear-gradient(145deg,#14192b,#101421);
+
+}
+
+.stat { padding:17px; }
+
+.stat-label { color:var(--muted); font-size:11px; }
+
+.stat-number { font-size:28px; font-weight:bold; margin:13px 0 7px; }
+
+.section-title { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:26px 0 14px; }
+
+.section-title p { font-size:11px; color:var(--muted); margin:4px 0; }
+
+.modules { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+
+.module { padding:19px; cursor:pointer; transition:.2s; }
+
+.module:hover { border-color:var(--purple); transform:translateY(-2px); }
+
+.module .symbol { font-size:25px; color:var(--cyan); margin-bottom:13px; }
+
+.module p { font-size:12px; color:var(--muted); min-height:38px; }
+
+.module a { color:var(--cyan); font-weight:bold; font-size:11px; }
+
+.view { display:none; }
+
+.view.active { display:block; }
+
+.panel { padding:20px; margin-bottom:15px; }
+
+.toolbar { display:flex; flex-wrap:wrap; gap:9px; margin-bottom:15px; }
+
+.field {
+
+  color:var(--text); background:#0c1020; border:1px solid var(--line);
+
+  border-radius:9px; padding:11px; min-width:0;
+
+}
+
+.field.grow { flex:1; }
+
+.word-card {
+
+  text-align:center; padding:30px 15px; border-radius:16px;
+
+  border:1px solid #8d73e855; background:linear-gradient(130deg,#211a40,#121a2c);
+
+}
+
+.word { font-size:39px; font-weight:bold; margin:15px 0; }
+
+.meaning { color:var(--cyan); font-size:19px; margin:13px; }
+
+.example { color:#c0c5dc; line-height:1.8; }
+
+.controls { display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin:17px 0; }
+
+.item,.question,.lesson {
+
+  background:var(--panel2); border:1px solid var(--line);
+
+  border-radius:12px; padding:15px; margin-bottom:11px;
+
+}
+
+.question h3 { line-height:1.7; }
+
+.option {
+
+  display:block; padding:10px; margin:7px 0; border-radius:8px;
+
+  border:1px solid var(--line); cursor:pointer; line-height:1.5;
+
+}
+
+.option:hover { border-color:var(--purple); }
+
+.option input { accent-color:var(--purple); margin-right:8px; }
+
+.feedback { padding:13px; background:#5de7ef12; border-radius:10px; margin-top:12px; line-height:1.8; }
+
+.passage { line-height:1.9; padding:17px; background:var(--panel2); border-radius:10px; margin-bottom:14px; color:#dce0f2; }
+
+.lesson p { white-space:pre-line; color:#c0c5dc; font-size:12px; }
+
+.badge { color:var(--cyan); background:#5de7ef12; border-radius:7px; padding:6px 9px; font-size:10px; }
+
+table { width:100%; border-collapse:collapse; font-size:12px; }
+
+td,th { text-align:left; border-bottom:1px solid var(--line); padding:12px 7px; }
+
+th { color:var(--muted); }
+
+.empty { text-align:center; padding:22px; color:var(--muted); line-height:1.8; }
+
+.note { color:var(--muted); font-size:11px; line-height:1.8; }
+
+footer { text-align:center; color:#656c88; font-size:10px; margin-top:30px; }
+
+\#toast { display:none; position:fixed; bottom:20px; right:20px; padding:14px; border:1px solid var(--purple); background:#202742; border-radius:10px; max-width:90%; }
+
+@media(max-width:1000px) {
+
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+  .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+}
+
+@media(max-width:650px) {
+
+  .app { display:block; }
+
+  aside { width:100%; padding:10px; border-right:0; border-bottom:1px solid var(--line); }
+
+  .logo { margin:0; padding:8px; }
+
+  nav { display:flex; overflow-x:auto; }
+
+  nav button { flex-shrink:0; padding:10px; font-size:11px; }
+
+  main { padding:17px 12px; }
+
+  .hero { padding:19px; }
+
+  .hero h2 { font-size:22px; }
+
+  .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+  .module { padding:13px; }
+
+  .panel { padding:13px; }
+
+}
+
+/* TOEIC AI Tutor */
+
+.ai-chat { display:flex; flex-direction:column; min-height:520px; max-height:75vh; overflow:hidden; }
+
+.ai-messages { flex:1; min-height:320px; overflow-y:auto; display:flex; flex-direction:column; gap:14px; padding:10px 2px 20px; }
+
+.ai-bubble { max-width:88%; padding:14px 16px; border-radius:15px; line-height:1.75; overflow-wrap:anywhere; white-space:pre-wrap; }
+
+.ai-bubble.assistant { align-self:flex-start; background:#1b2136; border:1px solid var(--line); }
+
+.ai-bubble.user { align-self:flex-end; background:#392b69; border:1px solid #8065db; }
+
+.ai-chat-form { display:flex; align-items:flex-end; gap:10px; padding-top:14px; border-top:1px solid var(--line); }
+
+.ai-chat-form textarea { resize:vertical; min-height:48px; max-height:140px; width:100%; font:inherit; line-height:1.5; }
+
+.ai-chat-form button { min-width:80px; min-height:48px; }
+
+.ai-chat-form button:disabled { opacity:.55; cursor:wait; }
+
+.ai-hint { color:var(--muted); font-size:11px; margin-top:9px; }
+
+@media(max-width:650px) { .ai-bubble { max-width:96%; } .ai-chat { max-height:none; min-height:460px; } }
+
+[hidden] { display:none !important; }
+
+/* Student authentication */
+
+.account-actions { display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+
+.account-name { color:var(--cyan); font-weight:bold; font-size:12px; }
+
+.auth-overlay { position:fixed; inset:0; z-index:1000; background:#050711d9; display:none; align-items:center; justify-content:center; padding:16px; }
+
+.auth-overlay.open { display:flex; }
+
+.auth-dialog { width:min(440px,100%); padding:26px; border:1px solid #8d73e855; border-radius:18px; background:var(--panel); box-shadow:0 24px 80px #0009; }
+
+.auth-dialog h2 { margin:0 0 10px; }
+
+.auth-dialog .field { display:block; width:100%; margin:10px 0; }
+
+.auth-dialog .btn { width:100%; margin-top:10px; }
+
+.auth-dialog .auth-switch { background:none; border:0; color:var(--cyan); padding:8px; }
+
+.auth-error { min-height:18px; color:#ff9ca9; font-size:12px; margin-top:10px; }
+
+.auth-dialog-head { display:flex; justify-content:space-between; align-items:center; }
+
+.auth-close { background:none; color:var(--text); border:0; font-size:24px; }
+
+@media(max-width:650px) { header { align-items:flex-start; } .account-actions { justify-content:flex-end; } }
+
+
+/* Admin dashboard */
+.admin-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 24px; }
+.admin-table-wrap { overflow-x:auto; }
+.admin-status { color:var(--muted); font-size:12px; }
+.admin-role { display:inline-block; padding:5px 9px; border-radius:7px; background:#a084ff22; color:#c7b9ff; font-size:11px; }
+@media(max-width:1000px) { .admin-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:650px) { .admin-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+/* Separate administrator workspace */
+.admin-shell { display:none; min-height:100vh; }
+body.admin-mode > .app { display:none; }
+body.admin-mode > .admin-shell { display:flex; }
+.admin-sidebar { width:255px; padding:24px 15px; background:#0b0e1c; border-right:1px solid var(--line); flex-shrink:0; }
+.admin-brand { font-size:20px; font-weight:800; padding:12px 10px 22px; }
+.admin-brand span { color:var(--purple); }
+.admin-brand small { display:block; margin-top:7px; color:var(--muted); font-size:10px; letter-spacing:2px; }
+.admin-side-label { font-size:10px; color:var(--muted); letter-spacing:2px; padding:16px 12px 8px; }
+.admin-side-btn { display:block; width:100%; padding:14px 12px; border:1px solid transparent; border-radius:11px; background:transparent; color:#c5c9df; text-align:left; margin-bottom:5px; }
+.admin-side-btn:hover,.admin-side-btn.active { background:#a084ff20; color:#fff; border-color:#a084ff50; }
+.admin-side-bottom { margin-top:30px; padding-top:15px; border-top:1px solid var(--line); }
+.admin-workspace { width:100%; flex:1; min-width:0; padding:30px clamp(16px,3vw,46px); }
+.admin-topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
+.admin-topbar h1 { margin:6px 0; }
+.admin-profile { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.admin-profile-name { color:var(--cyan); font-weight:bold; }
+.admin-shell .view { display:block; }
+.admin-shell .hero { background:linear-gradient(115deg,#2a1b51,#191b37 65%,#112d37); }
+.admin-feature-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:20px; }
+.admin-feature { padding:18px; border:1px solid var(--line); border-radius:14px; background:var(--panel); }
+.admin-feature strong { display:block; margin-bottom:7px; }
+.admin-feature p { margin:0; font-size:12px; color:var(--muted); }
+.admin-shell #view-admin { max-width:1400px; }
+@media(max-width:850px) { .admin-feature-grid { grid-template-columns:1fr; } }
+@media(max-width:650px) { body.admin-mode > .admin-shell { display:block; } .admin-sidebar { width:100%; padding:10px; border-right:0; border-bottom:1px solid var(--line); } .admin-brand { padding:8px; } .admin-side-label { display:none; } .admin-side-nav { display:flex; overflow-x:auto; gap:6px; } .admin-side-btn { white-space:nowrap; width:auto; margin:0; } .admin-side-bottom { margin-top:10px; padding-top:10px; } .admin-workspace { padding:17px 12px; } }
+
+
+/* Writing workspace */
+.writing-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.writing-assignment {border:1px solid var(--line);border-radius:13px;padding:18px;background:var(--panel2)}
+.writing-assignment h3 {font-size:17px}
+.writing-detail {white-space:pre-wrap;line-height:1.7;color:#c0c5dc}
+.writing-score {font-size:32px;font-weight:800;color:var(--cyan)}
+.writing-table {overflow:auto}
+.writing-table table {min-width:540px}
+.writing-form {display:grid;gap:11px;max-width:760px}
+.writing-form .field {width:100%}
+.writing-message {padding:12px 0;color:var(--cyan);font-size:12px}
+.writing-photo {max-width:100%;max-height:350px;border-radius:10px;object-fit:contain}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside>
+
+  <div class="logo">✦ TOEIC <span>NOVA</span><small>SMART ENGLISH LAB</small></div>
+
+  <nav id="nav">
+
+    <button class="active" data-view="home">▦ Tổng quan</button>
+
+    <button data-view="vocab">▤ Từ vựng</button>
+
+    <button data-view="listening">♫ Luyện nghe</button>
+
+    <button data-view="reading">▧ Luyện đọc</button>
+
+    <button data-view="grammar">✎ Ngữ pháp</button>
+
+    <button data-view="quiz">◈ Kiểm tra</button>
+
+    <button data-view="progress">↗ Tiến độ</button>
+
+    <button data-view="ai">✦ AI Tutor</button>
+    <button data-view="writing">✍ Writing</button>
+    <button data-view="admin" id="adminNavBtn" hidden>⚙ Vào quản trị</button>
+
+  </nav>
+
+</aside>
+
+<main>
+
+<header>
+
+  <div>
+
+    <div class="eyebrow">YOUR PERSONAL TOEIC SPACE</div>
+
+    <h1 id="pageTitle">Chào bạn, hôm nay học gì?</h1>
+
+    <div class="muted" id="pageSub">Một chút tiến bộ mỗi ngày sẽ tạo nên khác biệt.</div>
+
+  </div>
+
+  <div class="account-actions" id="accountActions">
+
+      <button class="btn secondary" id="openLogin" type="button">Đăng nhập</button>
+
+      <button class="btn" id="openRegister" type="button">Đăng ký</button>
+
+      <span class="account-name" id="accountName" hidden></span>
+
+      <button class="btn secondary" id="logoutButton" type="button" hidden>Đăng xuất</button>
+
+    </div>
+
+</header>
+
+<section class="view active" id="view-home">
+
+  <div class="hero">
+
+    <span class="tag">✦ YOUR TOEIC JOURNEY</span>
+
+    <h2>Build your English. Boost your score.</h2>
+
+    <p>Học từ vựng, luyện Listening & Reading, củng cố ngữ pháp và theo dõi tiến độ học trong một không gian duy nhất.</p>
+
+    <button class="btn" onclick="showView('vocab')">Bắt đầu học từ vựng →</button>
+
+  </div>
+
+  <div class="stats">
+
+    <div class="stat"><div class="stat-label">Từ vựng</div><div class="stat-number" id="statWords">—</div><small>Từ trong hệ thống</small></div>
+
+    <div class="stat"><div class="stat-label">Bài quiz đã làm</div><div class="stat-number" id="statQuizzes">0</div><small>Lần kiểm tra</small></div>
+
+    <div class="stat"><div class="stat-label">Điểm quiz trung bình</div><div class="stat-number" id="statAverage">—</div><small>Tỷ lệ đúng</small></div>
+
+    <div class="stat"><div class="stat-label">Lượt học hôm nay</div><div class="stat-number" id="statToday">0</div><small>Hoạt động đã lưu</small></div>
+
+  </div>
+
+  <div class="section-title"><div><h2>Khu vực học tập</h2><p>Chọn kỹ năng muốn cải thiện hôm nay.</p></div></div>
+
+  <div class="modules">
+
+    <div class="module" onclick="showView('vocab')"><div class="symbol">▤</div><h3>Vocabulary</h3><p>Flashcard, nghĩa tiếng Việt và ví dụ thực tế.</p><a>Mở từ vựng →</a></div>
+
+    <div class="module" onclick="showView('listening')"><div class="symbol">♫</div><h3>Listening</h3><p>Luyện nghe câu hỏi và bắt từ khóa.</p><a>Luyện nghe →</a></div>
+
+    <div class="module" onclick="showView('reading')"><div class="symbol">▧</div><h3>Reading</h3><p>Đọc email, thông báo và tìm thông tin.</p><a>Luyện đọc →</a></div>
+
+    <div class="module" onclick="showView('grammar')"><div class="symbol">✎</div><h3>Grammar</h3><p>Ôn ngữ pháp và cách dùng trong câu.</p><a>Học ngữ pháp →</a></div>
+
+    <div class="module" onclick="showView('quiz')"><div class="symbol">◈</div><h3>Quick Quiz</h3><p>Làm trắc nghiệm và xem giải thích đáp án.</p><a>Làm bài →</a></div>
+
+    <div class="module" onclick="showView('progress')"><div class="symbol">↗</div><h3>My Progress</h3><p>Xem lịch sử học và kết quả đã lưu.</p><a>Xem tiến độ →</a></div>
+
+  </div>
+
+</section>
+
+<section class="view" id="view-vocab">
+
+  <div class="section-title"><div><h2>TOEIC Vocabulary</h2><p>Học từ mới theo chủ đề.</p></div><span class="badge" id="wordCounter">CARD 1</span></div>
+
+  <div class="toolbar">
+
+    <input class="field grow" id="wordSearch" placeholder="Tìm từ hoặc nghĩa tiếng Việt...">
+
+    <select class="field" id="wordCategory"><option value="">Tất cả chủ đề</option></select>
+
+  </div>
+
+  <div class="word-card" id="wordCard">Đang tải từ vựng...</div>
+
+  <div class="controls">
+
+    <button class="btn secondary" id="prevWord">← Trước</button>
+
+    <button class="btn" id="speakWord">🔊 Phát âm</button>
+
+    <button class="btn secondary" id="knowWord">Đã ôn ✓</button>
+
+    <button class="btn secondary" id="nextWord">Tiếp →</button>
+
+  </div>
+
+  <p class="note">Chức năng phát âm sử dụng giọng đọc tiếng Anh có sẵn trong trình duyệt.</p>
+
+</section>
+
+<section class="view" id="view-listening">
+
+  <div class="section-title"><div><h2>Listening Practice</h2><p>Nghe câu hỏi và chọn câu trả lời phù hợp.</p></div><span class="badge">PART 2 STYLE</span></div>
+
+  <div class="panel">
+
+    <div class="section-title"><h3 id="listenNumber">Question 1</h3><button class="btn secondary" id="playListening">▶ Nghe câu hỏi</button></div>
+
+    <p class="muted">Hãy nghe trước khi xem transcript.</p>
+
+    <div id="listenQuestion"></div>
+
+    <div class="controls">
+
+      <button class="btn secondary" id="showTranscript">Hiện transcript</button>
+
+      <button class="btn" id="checkListening">Kiểm tra</button>
+
+      <button class="btn secondary" id="nextListening">Câu tiếp theo →</button>
+
+    </div>
+
+    <div id="listenTranscript" class="passage" style="display:none"></div>
+
+    <div id="listenFeedback"></div>
+
+  </div>
+
+</section>
+
+<section class="view" id="view-reading">
+
+  <div class="section-title"><div><h2>Reading Practice</h2><p>Luyện đọc email và thông báo.</p></div><span class="badge">PART 6–7</span></div>
+
+  <div class="panel">
+
+    <h3>Office Maintenance Schedule</h3>
+
+    <div class="passage">
+
+      Dear Team,<br><br>
+
+      Please be informed that the second-floor meeting rooms will be unavailable this Friday from 1:00 p.m. to 4:00 p.m. while the maintenance team installs new presentation equipment. Employees who have scheduled meetings during this period should contact the administration office to reserve an alternative room.<br><br>
+
+      We apologize for any inconvenience and appreciate your cooperation.<br><br>
+
+      Best regards,<br>Office Administration
+
+    </div>
+
+    <div class="question">
+
+      <h3>1. Why will the meeting rooms be unavailable?</h3>
+
+      <label class="option"><input type="radio" name="read1" value="A"> A. A staff meeting will be held.</label>
+
+      <label class="option"><input type="radio" name="read1" value="B"> B. New equipment will be installed.</label>
+
+      <label class="option"><input type="radio" name="read1" value="C"> C. The office will close permanently.</label>
+
+      <label class="option"><input type="radio" name="read1" value="D"> D. Employees will attend training.</label>
+
+    </div>
+
+    <div class="question">
+
+      <h3>2. What should employees with meetings do?</h3>
+
+      <label class="option"><input type="radio" name="read2" value="A"> A. Cancel their meetings.</label>
+
+      <label class="option"><input type="radio" name="read2" value="B"> B. Work from home.</label>
+
+      <label class="option"><input type="radio" name="read2" value="C"> C. Contact the administration office.</label>
+
+      <label class="option"><input type="radio" name="read2" value="D"> D. Install the equipment themselves.</label>
+
+    </div>
+
+    <button class="btn" id="checkReading">Nộp câu trả lời</button>
+
+    <div id="readFeedback"></div>
+
+  </div>
+
+</section>
+
+<section class="view" id="view-grammar">
+
+  <div class="section-title"><div><h2>Grammar Library</h2><p>Ôn các chủ điểm ngữ pháp TOEIC.</p></div></div>
+
+  <input class="field" id="lessonSearch" placeholder="Tìm bài học..." style="width:100%;margin-bottom:15px">
+
+  <div id="lessonList"><div class="empty">Đang tải bài học...</div></div>
+
+</section>
+
+<section class="view" id="view-quiz">
+
+  <div class="section-title"><div><h2>Quick TOEIC Quiz</h2><p>Trả lời câu hỏi và xem giải thích sau khi nộp.</p></div><span class="badge">PRACTICE</span></div>
+
+  <div class="toolbar">
+
+    <select class="field" id="quizSection">
+
+      <option value="">Tất cả câu hỏi</option>
+
+      <option value="Grammar">Grammar</option>
+
+      <option value="Vocabulary">Vocabulary</option>
+
+      <option value="Reading">Reading</option>
+
+    </select>
+
+    <button class="btn secondary" id="reloadQuiz">Tải câu hỏi</button>
+
+  </div>
+
+  <div id="quizList"><div class="empty">Đang tải câu hỏi...</div></div>
+
+  <button class="btn" id="submitQuiz">Nộp bài và chấm điểm</button>
+
+  <div id="quizFeedback"></div>
+
+</section>
+
+<section class="view" id="view-progress">
+
+  <div class="section-title"><div><h2>My Progress</h2><p>Lịch sử hoạt động được lưu trong MySQL.</p></div><button class="btn secondary" id="refreshProgress">Làm mới</button></div>
+
+  <div class="stats">
+
+    <div class="stat"><div class="stat-label">Lần làm quiz</div><div class="stat-number" id="pAttempts">0</div></div>
+
+    <div class="stat"><div class="stat-label">Điểm trung bình</div><div class="stat-number" id="pAverage">—</div></div>
+
+    <div class="stat"><div class="stat-label">Lượt ôn từ</div><div class="stat-number" id="pWords">0</div></div>
+
+    <div class="stat"><div class="stat-label">Học hôm nay</div><div class="stat-number" id="pToday">0</div></div>
+
+  </div>
+
+  <div class="panel"><h3>Lịch sử học tập</h3><div id="history"><div class="empty">Đang tải...</div></div></div>
+
+  <p class="note">Tiến độ được lưu riêng cho từng tài khoản. Hãy đăng nhập để xem lịch sử học tập.</p>
+
+</section>
+
+<section class="view" id="view-ai">
+
+  <div class="section-title"><div><h2>✦ TOEIC AI Tutor</h2><p>Hỏi về từ vựng, ngữ pháp và bài tập TOEIC với Gemini.</p></div><span class="badge">GEMINI AI</span></div>
+
+  <div class="panel ai-chat">
+
+    <div class="ai-messages" id="aiMessages" role="log" aria-live="polite" aria-relevant="additions">
+
+      <div class="ai-bubble assistant">Xin chào! 💜 Mình là TOEIC AI Tutor. Bạn muốn hỏi gì về tiếng Anh hoặc bài thi TOEIC?</div>
+
+    </div>
+
+    <form class="ai-chat-form" id="aiChatForm">
+
+      <textarea class="field" id="aiQuestion" placeholder="Ví dụ: Phân biệt since và for..." maxlength="2000" rows="2" aria-label="Câu hỏi TOEIC" required></textarea>
+
+      <button class="btn" id="aiSend" type="submit">Gửi ➤</button>
+
+    </form>
+
+    <div class="ai-hint" id="aiStatus" role="status">Enter để gửi, Shift + Enter để xuống dòng. AI có thể mắc lỗi, hãy kiểm tra thông tin quan trọng.</div>
+
+  </div>
+
+</section>
+
+
+<section class="view" id="view-admin">
+  <div class="section-title">
+    <div><h2>⚙ Admin Dashboard</h2><p>Thống kê và quản lý hệ thống TOEIC Nova.</p></div>
+    <button class="btn secondary" id="refreshAdmin" type="button">↻ Làm mới</button>
+  </div>
+  <div class="hero">
+    <span class="tag">✦ TOEIC NOVA CONTROL CENTER</span>
+    <h2>Chào mừng quản trị viên</h2>
+    <p>Thông tin dưới đây được cập nhật từ MySQL thông qua API quản trị.</p>
+  </div>
+  <div class="admin-grid" id="adminStats">
+    <div class="stat"><div class="stat-label">Tổng tài khoản</div><div class="stat-number" id="adminTotalUsers">—</div></div>
+    <div class="stat"><div class="stat-label">Học sinh</div><div class="stat-number" id="adminTotalStudents">—</div></div>
+    <div class="stat"><div class="stat-label">Giáo viên</div><div class="stat-number" id="adminTotalTeachers">—</div></div>
+    <div class="stat"><div class="stat-label">Quản trị viên</div><div class="stat-number" id="adminTotalAdmins">—</div></div>
+    <div class="stat"><div class="stat-label">Từ vựng</div><div class="stat-number" id="adminTotalVocabulary">—</div></div>
+    <div class="stat"><div class="stat-label">Bài học</div><div class="stat-number" id="adminTotalLessons">—</div></div>
+    <div class="stat"><div class="stat-label">Câu hỏi</div><div class="stat-number" id="adminTotalQuestions">—</div></div>
+  </div>
+  <div class="panel">
+    <div class="section-title"><div><h2>Danh sách tài khoản</h2><p>Dữ liệu từ /api/admin/users nếu backend hỗ trợ.</p></div></div>
+    <div class="admin-table-wrap" id="adminUsers"><div class="empty">Đang tải tài khoản...</div></div>
+  </div>
+  <p class="admin-status" id="adminStatus" role="status"></p>
+</section>
+
+
+<section class="view" id="view-writing">
+  <div class="section-title"><div><h2>✍ Writing Assignments</h2><p>Nộp ảnh bài viết, AI chấm điểm và xếp hạng tự động.</p></div><button class="btn secondary" type="button" id="writingRefresh">Làm mới</button></div>
+  <div id="writingList" class="writing-grid"><div class="empty">Đang tải đề Writing...</div></div>
+  <div id="writingDetail" class="panel" hidden></div>
+</section>
+
+<footer>TOEIC NOVA · SMART ENGLISH LAB · <span id="year"></span></footer>
+
+</main>
+
+</div>
+
+
+<div class="admin-shell" id="adminShell" aria-label="Khu vực quản trị TOEIC Nova">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">✦ TOEIC <span>NOVA</span><small>ADMIN CONTROL CENTER</small></div>
+    <div class="admin-side-label">QUẢN TRỊ HỆ THỐNG</div>
+    <div class="admin-side-nav" id="adminSideNav">
+      <button class="admin-side-btn active" type="button" data-admin-target="adminStats">▦ Tổng quan</button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminUsers">♙ Tài khoản</button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminContent">▤ Nội dung học tập</button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminWriting">✍ Writing & Xếp hạng</button>
+    </div>
+    <div class="admin-side-bottom">
+      <button class="admin-side-btn" type="button" id="switchToStudent">↗ Giao diện học sinh</button>
+      <button class="admin-side-btn" type="button" id="adminLogout">⇥ Đăng xuất</button>
+    </div>
+  </aside>
+  <main class="admin-workspace">
+    <div class="admin-topbar">
+      <div><div class="eyebrow">TOEIC NOVA / ADMINISTRATION</div><h1>Trung tâm quản trị</h1><div class="muted">Theo dõi tài khoản và nội dung học tập từ MySQL.</div></div>
+      <div class="admin-profile"><span class="admin-profile-name" id="adminProfileName">Quản trị viên</span><span class="avatar">⚙</span></div>
+    </div>
+    <div id="adminViewMount"></div>
+    
+<section class="panel" id="adminWriting">
+  <div class="section-title"><div><h2>✍ Quản lý Writing</h2><p>Tạo đề, đặt hạn nộp, theo dõi bài đã chấm và chưa nộp.</p></div><button class="btn secondary" type="button" id="adminWritingRefresh">Làm mới</button></div>
+  <form id="writingCreateForm" class="writing-form">
+    <input class="field" name="title" placeholder="Tên bài Writing" maxlength="200" required>
+    <textarea class="field" name="prompt" rows="4" placeholder="Đề bài và yêu cầu chi tiết" maxlength="10000" required></textarea>
+    <div class="toolbar"><label>Số từ tối thiểu <input class="field" name="min_words" type="number" min="1" max="3000" value="50" required></label><label>Số từ tối đa <input class="field" name="max_words" type="number" min="1" max="3000" value="300" required></label></div>
+    <label>Hạn nộp (giờ Việt Nam) <input class="field" name="deadline" type="datetime-local" required></label>
+    <button class="btn" type="submit">+ Tạo đề Writing</button>
+  </form>
+  <div class="writing-message" id="adminWritingMessage"></div>
+  <div id="adminWritingAssignments" class="writing-grid"></div>
+  <div class="section-title"><h3>Tình trạng bài nộp</h3></div>
+  <div id="adminWritingSubmissions" class="writing-table"></div>
+</section>
+
+    <div class="admin-feature-grid" id="adminContent">
+      <div class="admin-feature"><strong>▤ Từ vựng</strong><p>Thống kê số từ trong hệ thống. Chức năng thêm, sửa, xóa cần API quản trị tương ứng.</p></div>
+      <div class="admin-feature"><strong>✎ Bài học</strong><p>Theo dõi tổng số bài học ngữ pháp và nội dung học tập.</p></div>
+      <div class="admin-feature"><strong>◈ Câu hỏi</strong><p>Theo dõi số câu hỏi kiểm tra TOEIC hiện có.</p></div>
+    </div>
+    <footer>TOEIC NOVA · ADMIN CONTROL CENTER</footer>
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<div class="auth-overlay" id="authOverlay" aria-hidden="true">
+
+  <div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+
+    <div class="auth-dialog-head">
+
+      <h2 id="authTitle">Đăng nhập</h2>
+
+      <button class="auth-close" id="authClose" type="button" aria-label="Đóng">×</button>
+
+    </div>
+
+    <p class="muted" id="authDescription">Đăng nhập để lưu tiến độ học của riêng bạn.</p>
+
+    <form id="authForm">
+
+      <input class="field" id="authFullName" name="full_name" placeholder="Họ và tên" autocomplete="name" maxlength="100" hidden>
+
+      <input class="field" id="authEmail" name="email" type="email" placeholder="Email" autocomplete="email" maxlength="150" required>
+
+      <input class="field" id="authPassword" name="password" type="password" placeholder="Mật khẩu (ít nhất 8 ký tự)" autocomplete="current-password" minlength="8" maxlength="72" required>
+
+      <div class="auth-error" id="authError" role="alert"></div>
+
+      <button class="btn" id="authSubmit" type="submit">Đăng nhập</button>
+
+    </form>
+
+    <button class="auth-switch" id="authSwitch" type="button">Chưa có tài khoản? Đăng ký</button>
+
+  </div>
+
+</div>
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+
+const state = {
+
+  vocab: [], filtered: [], lessons: [], questions: [],
+
+  progress: [], wordIndex: 0, listenIndex: 0, quizSubmitted: false
+
+};
+
+const listening = [
+
+  {
+
+    question:"When will the new office equipment arrive?",
+
+    options:["A. In the storage room.","B. Sometime tomorrow morning.","C. The equipment is brand new."],
+
+    correct:1, explanation:"When hỏi về thời gian. Đáp án phù hợp là sometime tomorrow morning."
+
+  },
+
+  {
+
+    question:"Where should I leave these documents?",
+
+    options:["A. On the manager's desk.","B. I read them yesterday.","C. The documents are important."],
+
+    correct:0, explanation:"Where hỏi địa điểm. Đáp án là trên bàn của quản lý."
+
+  },
+
+  {
+
+    question:"Would you like me to book a conference room?",
+
+    options:["A. The conference was useful.","B. Yes, that would be helpful.","C. It starts at nine."],
+
+    correct:1, explanation:"Đây là lời đề nghị; đáp án B thể hiện sự đồng ý phù hợp."
+
+  }
+
+];
+
+function esc(value) {
+
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+
+  })[c]);
+
+}
+
+function toast(message) {
+
+  $("toast").textContent = message;
+
+  $("toast").style.display = "block";
+
+  clearTimeout(toast.timer);
+
+  toast.timer = setTimeout(() => $("toast").style.display = "none", 2800);
+
+}
+
+async function api(url, options = {}) {
+
+  const response = await fetch(url, {
+
+    headers: {"Content-Type":"application/json"},
+
+    ...options
+
+  });
+
+  const result = await response.json();
+
+  if (!response.ok || result.success === false) {
+
+    throw new Error(result.message || "Có lỗi khi gọi API.");
+
+  }
+
+  return result.data ?? result;
+
+}
+
+async function saveProgress(type, itemId, score, total) {
+
+  if (!currentUser) {
+
+    openAuth("login");
+
+    throw new Error("Đăng nhập để lưu tiến độ học.");
+
+  }
+
+  return api("/api/progress", {
+
+    method:"POST",
+
+    body:JSON.stringify({
+
+      activity_type:type,
+
+      item_id:Number(itemId || 0),
+
+      score:Number(score),
+
+      total:Number(total)
+
+    })
+
+  });
+
+}
+
+function showView(name) {
+  if (name === "admin") {
+    if (currentUser?.role !== "admin") return toast("Bạn không có quyền quản trị.");
+    enterAdminMode();
+    return;
+  }
+
+  if (name === "admin" && currentUser?.role !== "admin") {
+    toast("Bạn không có quyền quản trị.");
+    return;
+  }
+
+  document.querySelectorAll(".view").forEach(el =>
+
+    el.classList.toggle("active", el.id === "view-" + name)
+
+  );
+
+  document.querySelectorAll("#nav button").forEach(el =>
+
+    el.classList.toggle("active", el.dataset.view === name)
+
+  );
+
+  const titles = {
+
+    home:["Chào bạn, hôm nay học gì?","Một chút tiến bộ mỗi ngày."],
+
+    vocab:["TOEIC Vocabulary","Học từ mới và ôn tập bằng flashcard."],
+
+    listening:["Listening Practice","Luyện nghe câu hỏi tiếng Anh."],
+
+    reading:["Reading Practice","Rèn kỹ năng đọc hiểu."],
+
+    grammar:["Grammar Library","Học ngữ pháp từ cơ bản."],
+
+    quiz:["Quick TOEIC Quiz","Làm câu hỏi và xem lời giải."],
+
+    progress:["My Progress","Theo dõi quá trình học của bạn."],
+
+    ai:["TOEIC AI Tutor","Hỏi đáp TOEIC cùng Gemini AI."],
+    writing:["Writing Assignments","Nộp ảnh bài viết và nhận điểm AI."],
+    admin:["Admin Dashboard","Quản trị hệ thống TOEIC Nova."]
+
+  };
+
+  $("pageTitle").textContent = titles[name][0];
+
+  $("pageSub").textContent = titles[name][1];
+
+  if (name === "progress") loadProgress();
+  if (name === "writing") loadWriting();
+  if (name === "admin") loadAdminDashboard();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+document.querySelectorAll("#nav button").forEach(button =>
+
+  button.addEventListener("click", () => showView(button.dataset.view))
+
+);
+
+$("year").textContent = new Date().getFullYear();
+
+async function init() {
+
+  try {
+
+    const [vocab, lessons, questions] = await Promise.all([
+
+      api("/api/vocabulary"),
+
+      api("/api/lessons"),
+
+      api("/api/questions")
+
+    ]);
+
+    state.vocab = vocab;
+
+    state.filtered = [...vocab];
+
+    state.lessons = lessons;
+
+    state.questions = questions;
+
+    renderWords();
+
+    renderLessons();
+
+    renderQuiz();
+
+    renderListening();
+
+    setupCategories();
+
+    await loadProgress();
+
+  } catch (error) {
+
+    console.error(error);
+
+    toast("Không tải được dữ liệu. Kiểm tra backend và schema.sql.");
+
+    $("wordCard").innerHTML = '<div class="empty">Chưa tải được từ vựng. Hãy kiểm tra kết nối MySQL.</div>';
+
+    $("lessonList").innerHTML = '<div class="empty">Không tải được bài học.</div>';
+
+    $("quizList").innerHTML = '<div class="empty">Không tải được câu hỏi.</div>';
+
+  }
+
+}
+
+function setupCategories() {
+
+  const categories = [...new Set(state.vocab.map(w => w.category).filter(Boolean))];
+
+  $("wordCategory").innerHTML =
+
+    '<option value="">Tất cả chủ đề</option>' +
+
+    categories.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+
+}
+
+function renderWords() {
+
+  const words = state.filtered;
+
+  if (!words.length) {
+
+    $("wordCard").innerHTML = '<div class="empty">Không tìm thấy từ vựng.</div>';
+
+    $("wordCounter").textContent = "0 CARD";
+
+    return;
+
+  }
+
+  state.wordIndex = (state.wordIndex + words.length) % words.length;
+
+  const w = words[state.wordIndex];
+
+  $("wordCounter").textContent = `CARD ${state.wordIndex + 1} / ${words.length}`;
+
+  $("wordCard").innerHTML = `
+
+    <span class="tag">${esc(w.category || "TOEIC")}</span>
+
+    <div class="word">${esc(w.word)}</div>
+
+    <div class="muted">${esc(w.pronunciation || "")}</div>
+
+    <div class="meaning">${esc(w.meaning_vi)}</div>
+
+    <div class="example"><em>${esc(w.example_en || "")}</em><br>${esc(w.example_vi || "")}</div>
+
+  `;
+
+}
+
+function filterWords() {
+
+  const query = $("wordSearch").value.toLowerCase().trim();
+
+  const category = $("wordCategory").value;
+
+  state.filtered = state.vocab.filter(w =>
+
+    (!category || w.category === category) &&
+
+    (!query || [w.word,w.meaning_vi,w.category].some(v =>
+
+      String(v || "").toLowerCase().includes(query)
+
+    ))
+
+  );
+
+  state.wordIndex = 0;
+
+  renderWords();
+
+}
+
+$("wordSearch").addEventListener("input", filterWords);
+
+$("wordCategory").addEventListener("change", filterWords);
+
+$("prevWord").onclick = () => { state.wordIndex--; renderWords(); };
+
+$("nextWord").onclick = () => { state.wordIndex++; renderWords(); };
+
+$("speakWord").onclick = () => {
+
+  const word = state.filtered[state.wordIndex];
+
+  if (!word) return;
+
+  if (!window.speechSynthesis) return toast("Trình duyệt không hỗ trợ phát âm.");
+
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(word.word);
+
+  utterance.lang = "en-US";
+
+  utterance.rate = 0.85;
+
+  speechSynthesis.speak(utterance);
+
+};
+
+$("knowWord").onclick = async () => {
+
+  const word = state.filtered[state.wordIndex];
+
+  if (!word) return;
+
+  try {
+
+    await saveProgress("vocabulary", word.id, 1, 1);
+
+    toast("Đã lưu lượt ôn từ: " + word.word);
+
+    await loadProgress();
+
+  } catch (error) {
+
+    toast(error.message);
+
+  }
+
+};
+
+function renderLessons() {
+
+  const query = $("lessonSearch").value.toLowerCase().trim();
+
+  const lessons = state.lessons.filter(l =>
+
+    [l.title,l.description,l.content,l.section].some(v =>
+
+      String(v || "").toLowerCase().includes(query)
+
+    )
+
+  );
+
+  $("lessonList").innerHTML = lessons.length ? lessons.map(l => `
+
+    <div class="lesson">
+
+      <span class="badge">${esc(l.section)}</span>
+
+      <h3 style="margin-top:12px">${esc(l.title)}</h3>
+
+      <p>${esc(l.description || "")}</p>
+
+      <p>${esc(l.content)}</p>
+
+    </div>
+
+  `).join("") : '<div class="empty">Không tìm thấy bài học.</div>';
+
+}
+
+$("lessonSearch").addEventListener("input", renderLessons);
+
+function renderQuiz() {
+
+  $("quizFeedback").innerHTML = "";
+
+  state.quizSubmitted = false;
+
+  $("quizList").innerHTML = state.questions.length
+
+    ? state.questions.map((q,i) => `
+
+      <div class="question">
+
+        <h3>${i+1}. ${esc(q.question)}</h3>
+
+        ${["A","B","C","D"].map(letter => `
+
+          <label class="option">
+
+            <input type="radio" name="q${q.id}" value="${letter}">
+
+            ${letter}. ${esc(q["option_" + letter.toLowerCase()])}
+
+          </label>
+
+        `).join("")}
+
+        <div class="feedback" id="explain-${q.id}" style="display:none"></div>
+
+      </div>
+
+    `).join("")
+
+    : '<div class="empty">Chưa có câu hỏi trong cơ sở dữ liệu.</div>';
+
+}
+
+$("reloadQuiz").onclick = async () => {
+
+  try {
+
+    const section = $("quizSection").value;
+
+    const query = section ? "?section=" + encodeURIComponent(section) : "";
+
+    state.questions = await api("/api/questions" + query);
+
+    renderQuiz();
+
+  } catch (error) {
+
+    toast(error.message);
+
+  }
+
+};
+
+$("quizSection").onchange = () => $("reloadQuiz").click();
+
+$("submitQuiz").onclick = async () => {
+
+  if (state.quizSubmitted) return toast("Bạn đã nộp bài này. Hãy tải câu hỏi để làm lại.");
+
+  if (!state.questions.length) return toast("Chưa có câu hỏi.");
+
+  let correct = 0;
+
+  let answered = 0;
+
+  state.questions.forEach(q => {
+
+    const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+
+    if (selected) answered++;
+
+    if (selected && selected.value === q.correct_option) correct++;
+
+    const explanation = $("explain-" + q.id);
+
+    explanation.style.display = "block";
+
+    explanation.innerHTML =
+
+      `<strong>Đáp án: ${esc(q.correct_option)}</strong><br>` +
+
+      esc(q.explanation || "Hãy xem lại câu hỏi.");
+
+  });
+
+  const percent = Math.round(correct / state.questions.length * 100);
+
+  $("quizFeedback").innerHTML = `
+
+    <div class="feedback">
+
+      <strong>Kết quả: ${correct}/${state.questions.length} câu đúng (${percent}%).</strong><br>
+
+      Đã trả lời ${answered}/${state.questions.length} câu.
+
+    </div>
+
+  `;
+
+  state.quizSubmitted = true;
+
+  try {
+
+    await saveProgress("quiz", 0, percent, 100);
+
+    await loadProgress();
+
+  } catch (error) {
+
+    toast("Đã chấm điểm nhưng không lưu được: " + error.message);
+
+  }
+
+};
+
+function renderListening() {
+
+  const q = listening[state.listenIndex];
+
+  $("listenNumber").textContent = "Question " + (state.listenIndex + 1);
+
+  $("listenQuestion").innerHTML = `
+
+    <div class="question">
+
+      <h3>${esc(q.question)}</h3>
+
+      ${q.options.map((option,i) => `
+
+        <label class="option">
+
+          <input type="radio" name="listen" value="${i}">${esc(option)}
+
+        </label>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+  $("listenTranscript").style.display = "none";
+
+  $("listenTranscript").textContent = q.question;
+
+  $("listenFeedback").innerHTML = "";
+
+}
+
+$("playListening").onclick = () => {
+
+  if (!window.speechSynthesis) return toast("Trình duyệt không hỗ trợ phát âm.");
+
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(
+
+    listening[state.listenIndex].question
+
+  );
+
+  utterance.lang = "en-US";
+
+  utterance.rate = 0.82;
+
+  speechSynthesis.speak(utterance);
+
+};
+
+$("showTranscript").onclick = () => {
+
+  $("listenTranscript").style.display = "block";
+
+};
+
+$("checkListening").onclick = async () => {
+
+  const q = listening[state.listenIndex];
+
+  const selected = document.querySelector('input[name="listen"]:checked');
+
+  if (!selected) return toast("Hãy chọn một đáp án.");
+
+  const correct = Number(selected.value) === q.correct;
+
+  $("listenFeedback").innerHTML = `
+
+    <div class="feedback">
+
+      ${correct ? "✓ Chính xác!" : "Chưa đúng."}<br>
+
+      ${esc(q.explanation)}
+
+    </div>
+
+  `;
+
+  try {
+
+    await saveProgress("listening", state.listenIndex, correct ? 1 : 0, 1);
+
+    await loadProgress();
+
+  } catch (error) {
+
+    toast(error.message);
+
+  }
+
+};
+
+$("nextListening").onclick = () => {
+
+  state.listenIndex = (state.listenIndex + 1) % listening.length;
+
+  renderListening();
+
+};
+
+$("checkReading").onclick = async () => {
+
+  const answers = {read1:"B",read2:"C"};
+
+  let score = 0;
+
+  Object.entries(answers).forEach(([name,correct]) => {
+
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+
+    if (selected && selected.value === correct) score++;
+
+  });
+
+  $("readFeedback").innerHTML = `
+
+    <div class="feedback">
+
+      Bạn đúng ${score}/2 câu (${score*50}%).<br>
+
+      Đáp án: 1-B, 2-C. Hãy chú ý lý do phòng họp đóng cửa và hành động cần thực hiện.
+
+    </div>
+
+  `;
+
+  try {
+
+    await saveProgress("reading", 0, score, 2);
+
+    await loadProgress();
+
+  } catch (error) {
+
+    toast(error.message);
+
+  }
+
+};
+
+async function loadProgress() {
+
+  try {
+
+    state.progress = currentUser ? await api("/api/progress") : [];
+
+  } catch (error) {
+
+    state.progress = [];
+
+    console.error(error);
+
+  }
+
+  const quizzes = state.progress.filter(p => p.activity_type === "quiz");
+
+  const average = quizzes.length
+
+    ? quizzes.reduce((sum,p) => sum + Number(p.score),0) / quizzes.length
+
+    : null;
+
+  $("statWords").textContent = state.vocab.length;
+
+  $("statQuizzes").textContent = quizzes.length;
+
+  $("statAverage").textContent = average === null ? "—" : average.toFixed(0) + "%";
+
+  const today = new Date().toDateString();
+
+  $("statToday").textContent = state.progress.filter(
+
+    p => new Date(p.created_at).toDateString() === today
+
+  ).length;
+
+  $("pAttempts").textContent = quizzes.length;
+
+  $("pAverage").textContent = average === null ? "—" : average.toFixed(0) + "%";
+
+  $("pWords").textContent = state.progress.filter(
+
+    p => p.activity_type === "vocabulary"
+
+  ).length;
+
+  $("pToday").textContent = state.progress.filter(
+
+    p => new Date(p.created_at).toDateString() === today
+
+  ).length;
+
+  $("history").innerHTML = state.progress.length ? `
+
+    <table>
+
+      <thead><tr><th>Hoạt động</th><th>Điểm</th><th>Thời gian</th></tr></thead>
+
+      <tbody>
+
+        ${state.progress.map(p => `
+
+          <tr>
+
+            <td>${esc(({quiz:"Quiz",vocabulary:"Từ vựng",listening:"Luyện nghe",reading:"Luyện đọc"})[p.activity_type] || p.activity_type)}</td>
+
+            <td>${esc(p.score)} / ${esc(p.total)}</td>
+
+            <td>${esc(new Date(p.created_at).toLocaleString("vi-VN"))}</td>
+
+          </tr>
+
+        `).join("")}
+
+      </tbody>
+
+    </table>
+
+  ` : '<div class="empty">Chưa có lịch sử. Hãy làm quiz hoặc ôn từ vựng trước nhé.</div>';
+
+}
+
+$("refreshProgress").onclick = loadProgress;
+
+// ========================================
+
+// TOEIC AI TUTOR - gọi Express /api/ai/chat
+
+// ========================================
+
+const aiForm = $("aiChatForm");
+
+const aiQuestion = $("aiQuestion");
+
+const aiMessages = $("aiMessages");
+
+const aiSend = $("aiSend");
+
+const aiStatus = $("aiStatus");
+
+let aiBusy = false;
+
+function appendAiMessage(text, role) {
+
+  const bubble = document.createElement("div");
+
+  bubble.className = "ai-bubble " + role;
+
+  // textContent không diễn giải HTML do người dùng/AI tạo ra.
+
+  bubble.textContent = text;
+
+  aiMessages.appendChild(bubble);
+
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+
+  return bubble;
+
+}
+
+aiQuestion.addEventListener("keydown", event => {
+
+  if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+
+    event.preventDefault();
+
+    if (!aiBusy) aiForm.requestSubmit();
+
+  }
+
+});
+
+aiForm.addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  if (aiBusy) return;
+
+  const question = aiQuestion.value.trim();
+
+  if (!question) return;
+
+  if (question.length > 2000) return toast("Câu hỏi tối đa 2000 ký tự.");
+
+  aiBusy = true;
+
+  aiSend.disabled = true;
+
+  aiQuestion.disabled = true;
+
+  appendAiMessage(question, "user");
+
+  aiQuestion.value = "";
+
+  aiStatus.textContent = "Gemini đang trả lời, vui lòng chờ...";
+
+  const loading = appendAiMessage("Đang suy nghĩ...", "assistant");
+
+  try {
+
+    const result = await api("/api/ai/chat", {
+
+      method: "POST",
+
+      body: JSON.stringify({ question })
+
+    });
+
+    if (typeof result.answer !== "string" || !result.answer.trim()) {
+
+      throw new Error("AI chưa trả về câu trả lời hợp lệ.");
+
+    }
+
+    loading.textContent = result.answer;
+
+    aiStatus.textContent = "Đã nhận câu trả lời. Bạn có thể hỏi tiếp.";
+
+  } catch (error) {
+
+    loading.textContent = "Không thể nhận câu trả lời: " + error.message;
+
+    aiStatus.textContent = "Có lỗi xảy ra. Bạn có thể gửi lại câu hỏi.";
+
+  } finally {
+
+    aiBusy = false;
+
+    aiSend.disabled = false;
+
+    aiQuestion.disabled = false;
+
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+
+    aiQuestion.focus();
+
+  }
+
+});
+
+// ========================================
+
+// STUDENT AUTHENTICATION
+
+// ========================================
+
+// ========================================
+// ADMIN DASHBOARD
+// ========================================
+let adminMode = false;
+function enterAdminMode() {
+  if (currentUser?.role !== "admin") return;
+  adminMode = true;
+  document.body.classList.add("admin-mode");
+  $("adminProfileName").textContent = currentUser.full_name || currentUser.email || "Quản trị viên";
+  loadAdminDashboard();
+  window.scrollTo(0, 0);
+}
+function enterStudentMode() {
+  adminMode = false;
+  document.body.classList.remove("admin-mode");
+  showView("home");
+  window.scrollTo(0, 0);
+}
+$("switchToStudent").onclick = enterStudentMode;
+$("adminLogout").onclick = () => $("logoutButton").click();
+document.querySelectorAll("[data-admin-target]").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll("[data-admin-target]").forEach(b => b.classList.toggle("active", b === button));
+    $(button.dataset.adminTarget)?.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+});
+function updateAdminNavigation() {
+  const isAdmin = currentUser?.role === "admin";
+  $("adminNavBtn").hidden = !isAdmin;
+  if (!isAdmin && adminMode) enterStudentMode();
+}
+
+async function loadAdminDashboard() {
+  if (currentUser?.role !== "admin") return;
+  $("adminStatus").textContent = "Đang cập nhật thống kê...";
+  try {
+    const data = await api("/api/admin/stats");
+    const fields = {
+      adminTotalUsers: "totalUsers",
+      adminTotalStudents: "totalStudents",
+      adminTotalTeachers: "totalTeachers",
+      adminTotalAdmins: "totalAdmins",
+      adminTotalVocabulary: "totalVocabulary",
+      adminTotalLessons: "totalLessons",
+      adminTotalQuestions: "totalQuestions"
+    };
+    Object.entries(fields).forEach(([id, key]) => {
+      $(id).textContent = Number(data[key] ?? 0).toLocaleString("vi-VN");
+    });
+    $("adminStatus").textContent = "Đã cập nhật thống kê.";
+  } catch (error) {
+    $("adminStatus").textContent = "Không tải được thống kê: " + error.message;
+    return;
+  }
+
+  try {
+    const result = await api("/api/admin/users");
+    const users = Array.isArray(result) ? result : (result.users || []);
+    if (!Array.isArray(users)) throw new Error("Định dạng danh sách tài khoản không hợp lệ.");
+    $("adminUsers").innerHTML = users.length ? `
+      <table>
+        <thead><tr><th>ID</th><th>Họ tên</th><th>Email</th><th>Vai trò</th></tr></thead>
+        <tbody>${users.map(user => `
+          <tr>
+            <td>${esc(user.id)}</td>
+            <td>${esc(user.full_name || "—")}</td>
+            <td>${esc(user.email || "—")}</td>
+            <td><span class="admin-role">${esc(user.role || "—")}</span></td>
+          </tr>`).join("")}</tbody>
+      </table>` : '<div class="empty">Chưa có tài khoản.</div>';
+  } catch (error) {
+    $("adminUsers").innerHTML = '<div class="empty">Chưa tải được danh sách tài khoản. API /api/admin/users có thể chưa được tạo hoặc chưa trả đúng dữ liệu.</div>';
+  }
+}
+
+$("refreshAdmin").onclick = loadAdminDashboard;
+
+let authMode = "login";
+
+function openAuth(mode = "login") {
+
+  authMode = mode;
+
+  const register = mode === "register";
+
+  $("authTitle").textContent = register ? "Tạo tài khoản học sinh" : "Đăng nhập";
+
+  $("authDescription").textContent = register
+
+    ? "Đăng ký để lưu kết quả học tập trên TOEIC Nova."
+
+    : "Đăng nhập để lưu và xem tiến độ học của bạn.";
+
+  $("authFullName").hidden = !register;
+
+  $("authFullName").required = register;
+
+  $("authPassword").autocomplete = register ? "new-password" : "current-password";
+
+  $("authSubmit").textContent = register ? "Đăng ký" : "Đăng nhập";
+
+  $("authSwitch").textContent = register
+
+    ? "Đã có tài khoản? Đăng nhập" : "Chưa có tài khoản? Đăng ký";
+
+  $("authError").textContent = "";
+
+  $("authOverlay").classList.add("open");
+
+  $("authOverlay").setAttribute("aria-hidden", "false");
+
+  $("authEmail").focus();
+
+}
+
+function closeAuth() {
+
+  $("authOverlay").classList.remove("open");
+
+  $("authOverlay").setAttribute("aria-hidden", "true");
+
+  $("authError").textContent = "";
+
+  $("authPassword").value = "";
+
+}
+
+function renderAccount() {
+
+  const loggedIn = Boolean(currentUser);
+
+  $("openLogin").hidden = loggedIn;
+
+  $("openRegister").hidden = loggedIn;
+
+  $("accountName").hidden = !loggedIn;
+
+  $("logoutButton").hidden = !loggedIn;
+
+  $("accountName").textContent = loggedIn ? "Xin chào, " + currentUser.full_name : "";
+  updateAdminNavigation();
+
+}
+
+async function checkAuth() {
+
+  try {
+
+    const result = await api("/api/auth/me");
+
+    currentUser = result.user;
+
+  } catch {
+
+    currentUser = null;
+
+  }
+
+  renderAccount();
+
+}
+
+$("openLogin").onclick = () => openAuth("login");
+
+$("openRegister").onclick = () => openAuth("register");
+
+$("authClose").onclick = closeAuth;
+
+$("authSwitch").onclick = () => openAuth(authMode === "login" ? "register" : "login");
+
+$("authOverlay").addEventListener("click", event => {
+
+  if (event.target === $("authOverlay")) closeAuth();
+
+});
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape" && $("authOverlay").classList.contains("open")) closeAuth();
+
+});
+
+$("authForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  const submit = $("authSubmit");
+
+  submit.disabled = true;
+
+  $("authError").textContent = "";
+
+  const payload = {
+
+    email: $("authEmail").value.trim(),
+
+    password: $("authPassword").value
+
+  };
+
+  if (authMode === "register") payload.full_name = $("authFullName").value.trim();
+
+  try {
+
+    const registering = authMode === "register";
+
+    await api(registering ? "/api/auth/register" : "/api/auth/login", {
+
+      method: "POST", body: JSON.stringify(payload)
+
+    });
+
+    if (registering) {
+
+      $("authPassword").value = "";
+
+      openAuth("login");
+
+      toast("Đăng ký thành công! Hãy đăng nhập.");
+
+    } else {
+
+      await checkAuth();
+
+      closeAuth();
+
+      await loadProgress();
+      if (currentUser?.role === "admin") enterAdminMode();
+
+      toast("Đăng nhập thành công!");
+
+    }
+
+  } catch (error) {
+
+    $("authError").textContent = error.message;
+
+  } finally {
+
+    submit.disabled = false;
+
+  }
+
+});
+
+$("logoutButton").onclick = async () => {
+
+  try {
+
+    await api("/api/auth/logout", {method:"POST"});
+
+    currentUser = null;
+
+    renderAccount();
+    enterStudentMode();
+    await loadProgress();
+    toast("Đã đăng xuất.");
+
+  } catch (error) { toast(error.message); }
+
+};
+
+async function boot() {
+  // Keep one admin dashboard DOM; relocate it into the dedicated admin workspace.
+  $("adminViewMount").appendChild($("view-admin"));
+  await checkAuth();
+  await init();
+  if (currentUser?.role === "admin") enterAdminMode();
+}
+
+boot();
+
+
+// ========================================
+// WRITING ASSIGNMENTS / AI GRADING
+// ========================================
+let writingItems=[];
+let writingSelected=null;
+const writingDate = value => value ? new Date(value).toLocaleString("vi-VN") : "—";
+const writingEscape = value => esc(value);
+async function writingRequest(url,options={}){
+ const response=await fetch(url,{credentials:"same-origin",...options});
+ let body;try{body=await response.json()}catch{throw new Error("Server không trả JSON hợp lệ.")}
+ if(!response.ok||body.success===false)throw new Error(body.message||"Yêu cầu thất bại.");
+ return body.data;
+}
+async function loadWriting(){
+ const list=$("writingList");
+ if(!currentUser){list.innerHTML='<div class="empty">Hãy đăng nhập để xem và nộp bài Writing.</div>';$("writingDetail").hidden=true;return;}
+ try{
+  writingItems=await writingRequest("/api/writing/assignments");
+  list.innerHTML=writingItems.length?writingItems.map(a=>`<article class="writing-assignment">
+   <span class="badge">${a.closed?"Đã hết hạn":"Đang nhận bài"}</span>
+   <h3>${writingEscape(a.title)}</h3><p class="muted">Hạn: ${writingEscape(writingDate(a.deadline))}</p>
+   <p class="muted">${a.submission_id?(a.status==="graded"?"Đã chấm: "+a.score+"/100":a.status==="failed"?"AI chưa chấm được":"Đang chấm"):"Chưa nộp"}</p>
+   <button class="btn secondary" type="button" data-writing-open="${a.id}">Xem đề / Kết quả</button></article>`).join(""):'<div class="empty">Admin chưa giao bài Writing nào.</div>';
+  list.querySelectorAll("[data-writing-open]").forEach(b=>b.onclick=()=>openWriting(Number(b.dataset.writingOpen)));
+  if(writingSelected&&writingItems.some(a=>Number(a.id)===Number(writingSelected)))await openWriting(writingSelected);
+ }catch(error){list.innerHTML=`<div class="empty">${writingEscape(error.message)}</div>`;}
+}
+async function openWriting(id){
+ const a=writingItems.find(x=>Number(x.id)===Number(id));if(!a)return;
+ writingSelected=id;const detail=$("writingDetail");detail.hidden=false;
+ detail.innerHTML=`<h2>${writingEscape(a.title)}</h2><p class="writing-detail">${writingEscape(a.prompt)}</p>
+ <p class="muted">Yêu cầu ${a.min_words}–${a.max_words} từ · Hạn: ${writingEscape(writingDate(a.deadline))}</p>
+ ${a.submission_id?`<div class="feedback">Trạng thái: ${writingEscape(a.status)} ${a.status==="graded"?`<div class="writing-score">${a.score}/100</div><p>Ngữ pháp ${a.grammar_score}/25 · Từ vựng ${a.vocabulary_score}/25 · Nội dung ${a.content_score}/25 · Bố cục ${a.organization_score}/25</p><p>${writingEscape(a.feedback)}</p><details><summary>Văn bản AI nhận diện</summary><p class="writing-detail">${writingEscape(a.extracted_text)}</p></details>`:""}</div><p><a href="/api/writing/submissions/${a.submission_id}/image" target="_blank" rel="noopener">Xem ảnh đã nộp</a></p>`:
+ a.closed?'<div class="empty">Đã hết hạn nộp.</div>':`<form id="writingUploadForm"><div id="writingSubmitStatus" class="writing-message" role="status" aria-live="polite">Chọn ảnh bài viết rồi nhấn Nộp bài.</div><label>Chụp hoặc chọn ảnh bài viết (JPG, PNG, WEBP; tối đa 5MB)<input class="field" type="file" name="image" accept="image/jpeg,image/png,image/webp" capture="environment" required></label><p><button class="btn" id="writingSubmitButton" type="submit">Nộp bài và AI chấm ngay</button></p></form>`}
+ <div id="writingRanking" class="writing-table"><div class="empty">Đang tải bảng xếp hạng...</div></div>`;
+ const form=$("writingUploadForm");
+ if(form)form.onsubmit=async e=>{
+  e.preventDefault();
+  const status=$("writingSubmitStatus");
+  const button=$("writingSubmitButton");
+  const file=form.elements.image.files[0];
+  const say=message=>{status.textContent=message;};
+  if(!file){say("⚠️ Bà chưa chọn ảnh bài viết.");return;}
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+   say("⚠️ Chỉ nhận ảnh JPG, PNG hoặc WEBP.");return;
+  }
+  if(file.size>5*1024*1024){say("⚠️ Ảnh quá 5MB, hãy chọn ảnh nhỏ hơn.");return;}
+  button.disabled=true;
+  button.textContent="Đang nộp bài...";
+  say("⏳ Đang gửi ảnh lên TOEIC Nova và chờ AI chấm. Vui lòng đợi...");
+  try{
+   const body=new FormData();body.append("image",file);
+   const result=await writingRequest(`/api/writing/assignments/${id}/submit`,{method:"POST",body});
+   say(result?.status==="graded"?"✅ Nộp bài thành công, AI đã chấm xong!":"✅ Server đã nhận bài. Nếu AI chưa chấm được, hãy kiểm tra n8n.");
+   toast("Đã gửi bài Writing lên server.");
+   await loadWriting();
+  }catch(error){
+   console.error("Writing submission error:",error);
+   say("❌ Không nộp được: "+error.message);
+   button.disabled=false;
+   button.textContent="Thử nộp lại";
+  }
+ };
+ try{
+  const ranks=await writingRequest(`/api/writing/assignments/${id}/ranking`);
+  $("writingRanking").innerHTML=`<h3>🏆 Bảng xếp hạng</h3>`+(ranks.length?`<table><thead><tr><th>Hạng</th><th>Học sinh</th><th>Điểm</th></tr></thead><tbody>${ranks.map(r=>`<tr><td>#${r.rank}</td><td>${writingEscape(r.name)} ${r.is_me?"(Bạn)":""}</td><td>${r.score}/100</td></tr>`).join("")}</tbody></table>`:'<p class="muted">Chưa có bài được chấm.</p>');
+ }catch(error){$("writingRanking").textContent=error.message;}
+ detail.scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("writingRefresh").onclick=loadWriting;
+$("writingCreateForm").onsubmit=async e=>{
+ e.preventDefault();const form=e.currentTarget;const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{const f=new FormData(form);const payload=Object.fromEntries(f.entries());payload.min_words=Number(payload.min_words);payload.max_words=Number(payload.max_words);
+  await writingRequest("/api/writing/assignments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  $("adminWritingMessage").textContent="Đã tạo đề thành công.";form.reset();await loadAdminWriting();
+ }catch(error){$("adminWritingMessage").textContent=error.message;}finally{button.disabled=false;}
+};
+async function loadAdminWriting(){
+ if(currentUser?.role!=="admin")return;
+ try{
+  const [assignments,submissions]=await Promise.all([writingRequest("/api/writing/assignments"),writingRequest("/api/writing/admin/submissions")]);
+  $("adminWritingAssignments").innerHTML=assignments.map(a=>`<div class="writing-assignment"><span class="badge">${a.closed?"Hết hạn":"Đang mở"}</span><h3>${writingEscape(a.title)}</h3><p class="muted">Hạn: ${writingEscape(writingDate(a.deadline))}</p><button class="btn secondary" data-admin-rank="${a.id}">Xem xếp hạng</button></div>`).join("")||'<div class="empty">Chưa có đề.</div>';
+  $("adminWritingAssignments").querySelectorAll("[data-admin-rank]").forEach(b=>b.onclick=async()=>{
+   try{const ranks=await writingRequest(`/api/writing/assignments/${b.dataset.adminRank}/ranking`);alert(ranks.map(r=>`#${r.rank} ${r.name}: ${r.score}/100`).join("\n")||"Chưa có kết quả.");}catch(error){toast(error.message)}
+  });
+  $("adminWritingSubmissions").innerHTML=submissions.length?`<table><thead><tr><th>Đề</th><th>Học sinh</th><th>Trạng thái</th><th>Điểm</th><th>Bài nộp</th></tr></thead><tbody>${submissions.map(r=>`<tr><td>${writingEscape(r.title)}</td><td>${writingEscape(r.full_name)}<br><small>${writingEscape(r.email)}</small></td><td>${writingEscape(r.status||(new Date(r.deadline)<new Date()?"Chưa nộp / quá hạn":"Chưa nộp"))}</td><td>${r.score==null?"—":r.score+"/100"}</td><td>${r.submission_id?`<a href="/api/writing/submissions/${r.submission_id}/image" target="_blank" rel="noopener">Xem ảnh</a>`:"—"}</td></tr>`).join("")}</tbody></table>`:'<div class="empty">Chưa có dữ liệu học sinh.</div>';
+ }catch(error){$("adminWritingMessage").textContent="Không tải được Writing: "+error.message;}
+}
+$("adminWritingRefresh").onclick=loadAdminWriting;
+const oldEnterAdminMode=enterAdminMode;
+enterAdminMode=function(){oldEnterAdminMode();loadAdminWriting();};
+
+</script>
+
+</body>
+
+</html>
