@@ -362,6 +362,340 @@ body.admin-mode > .admin-shell { display:flex; }
 .writing-message {padding:12px 0;color:var(--cyan);font-size:12px}
 .writing-photo {max-width:100%;max-height:350px;border-radius:10px;object-fit:contain}
 
+
+/* TOEIC Nova · Refined navigation — isolated sidebar styles */
+.student-sidebar,.admin-sidebar {
+  width:258px; padding:24px 15px 17px; flex-shrink:0;
+  background:linear-gradient(165deg,#17142a 0%,#101425 56%,#0c1220 100%);
+  border-right:1px solid #ffffff12; box-shadow:8px 0 35px #05071328;
+  display:flex; flex-direction:column; gap:0;
+}
+.student-sidebar .logo,.admin-sidebar .admin-brand {
+  display:flex; align-items:center; gap:11px; padding:8px 9px 23px; margin:0;
+  font-size:19px; letter-spacing:.2px; font-weight:800; color:#f6f2ff;
+}
+.student-sidebar .logo .brand-mark,.admin-sidebar .admin-brand .brand-mark {
+  display:grid; place-items:center; flex-shrink:0; width:41px; height:41px;
+  border-radius:13px; color:#fff; font-size:23px;
+  background:linear-gradient(145deg,#aa8bff,#7456d9);
+  box-shadow:0 7px 22px #8867fa48;
+}
+.student-sidebar .logo .brand-copy,.admin-sidebar .admin-brand .brand-copy {display:block;line-height:1.2}
+.student-sidebar .logo .brand-copy>span,.admin-sidebar .admin-brand .brand-copy>span {color:#c1adff}
+.student-sidebar .logo small,.admin-sidebar .admin-brand small {
+  display:block; margin-top:6px; font-size:9px; font-weight:600;
+  letter-spacing:1.5px; color:#8e91b0;
+}
+.student-sidebar .side-heading,.admin-sidebar .admin-side-label {
+  padding:17px 13px 10px; font-size:10px; font-weight:700;
+  color:#777e9d; letter-spacing:1.7px;
+}
+.student-sidebar .side-heading-inner {padding-top:23px}
+.student-sidebar nav,.admin-sidebar .admin-side-nav {display:flex; flex-direction:column; gap:5px}
+.student-sidebar nav button,.admin-sidebar .admin-side-btn {
+  display:flex; align-items:center; gap:12px; width:100%; min-height:45px;
+  padding:10px 12px; margin:0; border:1px solid transparent;
+  border-radius:12px; background:transparent; color:#aeb3d0;
+  text-align:left; font-size:13px; font-weight:600;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.student-sidebar nav button:hover,.admin-sidebar .admin-side-btn:hover {
+  background:#a78bfa15; color:#f8f5ff; transform:translateX(2px);
+}
+.student-sidebar nav button.active,.admin-sidebar .admin-side-btn.active {
+  background:linear-gradient(95deg,#8363ed38,#a084ff13);
+  border-color:#b49bff45; color:#f8f5ff;
+  box-shadow:inset 3px 0 #ae94ff;
+}
+.student-sidebar nav button:focus-visible,.admin-sidebar .admin-side-btn:focus-visible {
+  outline:2px solid #bca8ff; outline-offset:2px;
+}
+.student-sidebar .side-icon,.admin-sidebar .side-icon {
+  display:grid; place-items:center; width:29px; height:29px; flex-shrink:0;
+  border-radius:9px; background:#ffffff09; color:#a7a1d0;
+  font-size:17px; font-weight:500;
+}
+.student-sidebar button.active .side-icon,.admin-sidebar button.active .side-icon {
+  background:#ad91ff28; color:#d7c7ff;
+}
+.student-sidebar .side-chip {margin-left:auto; padding:3px 6px; border-radius:6px; background:#ad91ff2b; color:#d2beff; font-size:9px; letter-spacing:.4px}
+.student-sidebar .sidebar-footer,.admin-sidebar .sidebar-footer {
+  display:flex; align-items:center; gap:9px; margin-top:auto; padding:20px 12px 6px;
+  color:#8189a7; font-size:10px;
+}
+.sidebar-footer-dot {width:7px;height:7px;border-radius:50%;background:#6de0b2;box-shadow:0 0 10px #6de0b266}
+.admin-sidebar .admin-side-bottom {margin-top:24px;padding-top:15px;border-top:1px solid #ffffff14;display:grid;gap:5px}
+.admin-sidebar #adminLogout {color:#e8b3c3}
+@media(max-width:650px) {
+  .student-sidebar,.admin-sidebar {width:100%;padding:11px 12px 10px;border-right:0;border-bottom:1px solid #ffffff14;box-shadow:none}
+  .student-sidebar .logo,.admin-sidebar .admin-brand {padding:4px 4px 11px;font-size:17px}
+  .student-sidebar .logo .brand-mark,.admin-sidebar .admin-brand .brand-mark {width:35px;height:35px}
+  .student-sidebar .side-heading,.admin-sidebar .admin-side-label,.student-sidebar .sidebar-footer,.admin-sidebar .sidebar-footer {display:none}
+  .student-sidebar nav,.admin-sidebar .admin-side-nav {flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:3px;scrollbar-width:thin}
+  .student-sidebar nav button,.admin-sidebar .admin-side-btn {width:auto;min-height:40px;flex-shrink:0;white-space:nowrap;padding:7px 10px;font-size:12px;gap:7px}
+  .student-sidebar .side-icon,.admin-sidebar .side-icon {width:24px;height:24px;font-size:14px}
+  .admin-sidebar .admin-side-bottom {display:flex;flex-wrap:wrap;margin-top:8px;padding-top:8px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .student-sidebar nav button,.admin-sidebar .admin-side-btn {transition:none}
+}
+
+/* TOEIC WORD MATCH GAME */
+
+.wm-game {
+  background: #161b30;
+  border: 1px solid #38345e;
+  border-radius: 18px;
+  padding: 22px;
+  margin-top: 18px;
+}
+
+.wm-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.wm-stats span {
+  background: #242943;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #f5f6ff;
+}
+
+.wm-progress {
+  height: 10px;
+  background: #30354d;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.wm-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #a084ff, #5de7ef);
+  transition: width 0.3s;
+}
+
+.wm-pairs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.wm-pairs h4 {
+  color: #aab5e6;
+}
+
+.wm-pick {
+  width: 100%;
+  min-height: 58px;
+  padding: 12px;
+  margin: 6px 0;
+  background: #20263d;
+  border: 1px solid #41486a;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.wm-pick:hover:not(:disabled) {
+  border-color: #a084ff;
+  background: #33305c;
+  transform: translateY(-2px);
+}
+
+.wm-pick.selected {
+  background: #52449a;
+  border-color: #bba7ff;
+}
+
+.wm-pick.matched {
+  background: #184638;
+  border-color: #68e6ac;
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.wm-notice {
+  min-height: 30px;
+  color: #5de7ef;
+  font-weight: bold;
+}
+
+.wm-end h3 {
+  color: #68e6ac;
+  font-size: 22px;
+}
+
+@media (max-width: 600px) {
+  .wm-pairs { gap: 8px; }
+  .wm-pick { font-size: 12px; }
+}
+
+
+/* ====================================
+   WF04 - DICTATION GAME
+==================================== */
+
+.dictation-game {
+  margin-top: 24px;
+  border: 1px solid #494069;
+  border-radius: 16px;
+}
+
+.dict-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+
+.dict-stats span {
+  background: #252b46;
+  border: 1px solid #444c70;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.dict-textarea {
+  width: 100%;
+  background: #161b30;
+  color: #ffffff;
+  border: 1px solid #555079;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  resize: vertical;
+  margin: 12px 0;
+}
+
+.dict-textarea:focus {
+  outline: none;
+  border-color: #a084ff;
+}
+
+.dict-result {
+  margin-top: 20px;
+  padding: 20px;
+  background: #1a2035;
+  border-radius: 14px;
+  border: 1px solid #454b6b;
+}
+
+.dict-comparison {
+  line-height: 2.5;
+  margin: 15px 0;
+}
+
+.dict-token {
+  display: inline-block;
+  padding: 2px 6px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.dict-correct {
+  color: #68e6ac;
+  background: #1c4637;
+}
+
+.dict-wrong {
+  color: #ff9898;
+  background: #572a39;
+}
+
+.dict-missing,
+.dict-extra {
+  color: #ffcd76;
+  background: #503d25;
+}
+
+/* Dictation player - không giới hạn thời gian */
+
+.dict-audio-player {
+  margin: 18px 0;
+  padding: 20px;
+  border: 1px solid #555079;
+  border-radius: 16px;
+  background: #1b2138;
+}
+
+.dict-player-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  color: #b7f7d2;
+}
+
+.dict-seek-area {
+  margin: 12px 0 20px;
+}
+
+.dict-seek-area label {
+  display: block;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+#dictSeek {
+  display: block;
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  accent-color: #a084ff;
+}
+
+.dict-seek-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  color: #d8d9e8;
+  font-size: 13px;
+}
+
+#dictPosition {
+  color: #bda8ff;
+}
+
+#dictSpeaker {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.dict-player-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dict-player-buttons button {
+  min-width: 100px;
+}
+
+.dict-player-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .dict-player-buttons button {
+    flex: 1 1 40%;
+  }
+}
+
 </style>
 
 </head>
@@ -370,32 +704,25 @@ body.admin-mode > .admin-shell { display:flex; }
 
 <div class="app">
 
-<aside>
-
-  <div class="logo">✦ TOEIC <span>NOVA</span><small>SMART ENGLISH LAB</small></div>
-
+<aside class="student-sidebar" aria-label="Điều hướng học tập">
+  <div class="logo"><span class="brand-mark">✦</span><span class="brand-copy">TOEIC <span>NOVA</span><small>SMART ENGLISH LAB</small></span></div>
+  <div class="side-heading">KHÔNG GIAN HỌC TẬP</div>
   <nav id="nav">
-
-    <button class="active" data-view="home">▦ Tổng quan</button>
-
-    <button data-view="vocab">▤ Từ vựng</button>
-
-    <button data-view="listening">♫ Luyện nghe</button>
-
-    <button data-view="reading">▧ Luyện đọc</button>
-
-    <button data-view="grammar">✎ Ngữ pháp</button>
-
-    <button data-view="quiz">◈ Kiểm tra</button>
-
-    <button data-view="progress">↗ Tiến độ</button>
-
-    <button data-view="ai">✦ AI Tutor</button>
-    <button data-view="writing">✍ Writing</button>
-    <button data-view="admin" id="adminNavBtn" hidden>⚙ Vào quản trị</button>
-
+    <button class="active" data-view="home"><span class="side-icon">▦</span><span>Tổng quan</span></button>
+    <div class="side-heading side-heading-inner">4 KỸ NĂNG TOEIC</div>
+    <button data-view="listening"><span class="side-icon">♫</span><span>Listening · Nghe</span></button>
+    <button data-view="speaking"><span class="side-icon">♬</span><span>Speaking · Nói</span></button>
+    <button data-view="reading"><span class="side-icon">▧</span><span>Reading · Đọc</span></button>
+    <button data-view="writing"><span class="side-icon">📝</span><span>Writing · Viết</span></button>
+    <div class="side-heading side-heading-inner">ÔN TẬP & CÔNG CỤ</div>
+    <button data-view="vocab"><span class="side-icon">▤</span><span>Từ vựng</span></button>
+    <button data-view="grammar"><span class="side-icon">✎</span><span>Ngữ pháp</span></button>
+    <button data-view="quiz"><span class="side-icon">◈</span><span>Kiểm tra</span></button>
+    <button data-view="progress"><span class="side-icon">↗</span><span>Tiến độ</span></button>
+    <button data-view="ai"><span class="side-icon">✦</span><span>AI Tutor</span><span class="side-chip">AI</span></button>
+    <button data-view="admin" id="adminNavBtn" hidden><span class="side-icon">⚙</span><span>Vào quản trị</span></button>
   </nav>
-
+  <div class="sidebar-footer"><span class="sidebar-footer-dot"></span><span>TOEIC Nova · Học mỗi ngày</span></div>
 </aside>
 
 <main>
@@ -500,6 +827,83 @@ body.admin-mode > .admin-shell { display:flex; }
 
   <p class="note">Chức năng phát âm sử dụng giọng đọc tiếng Anh có sẵn trong trình duyệt.</p>
 
+<!-- =====================================
+     AI VOCABULARY RAG
+===================================== -->
+
+<section class="panel" id="aiVocabPanel"
+         style="margin-top: 20px;">
+
+  <div class="section-title">
+    <div>
+      <h3>🎮 TOEIC Word Match – AI Challenge</h3>
+    </div>
+    <span class="badge">GEMINI AI</span>
+  </div>
+
+  <form id="aiVocabForm">
+
+    <div class="toolbar">
+
+      <label>
+        Chủ đề
+        <select class="field" id="aiVocabTopic">
+          <option value="Office">Office</option>
+          <option value="Travel" disabled>
+            Travel (chưa có RAG)
+          </option>
+          <option value="Finance" disabled>
+            Finance (chưa có RAG)
+          </option>
+          <option value="Recruitment" disabled>
+            Recruitment (chưa có RAG)
+          </option>
+        </select>
+      </label>
+
+      <label>
+        Trình độ
+        <select class="field" id="aiVocabLevel">
+          <option value="Intermediate">
+            Intermediate
+          </option>
+          <option value="Beginner" disabled>
+            Beginner
+          </option>
+          <option value="Advanced" disabled>
+            Advanced
+          </option>
+        </select>
+      </label>
+
+      <label>
+        Số từ
+        <select class="field" id="aiVocabCount">
+          <option value="3">3 từ</option>
+          <option value="5" selected>5 từ</option>
+        </select>
+      </label>
+
+      <button
+        class="btn"
+        type="submit"
+        id="aiVocabGenerate">
+        Bắt đầu chơi
+      </button>
+
+    </div>
+
+  </form>
+
+  <p id="aiVocabStatus"
+     class="muted"
+     role="status">
+  </p>
+
+  <div id="aiVocabResults"></div>
+
+</section>
+
 </section>
 
 <section class="view" id="view-listening">
@@ -530,6 +934,179 @@ body.admin-mode > .admin-shell { display:flex; }
 
   </div>
 
+<!-- ======================================
+     WF04 - AI LISTENING DICTATION
+====================================== -->
+
+<div class="panel dictation-game">
+
+  <div class="section-title">
+    <div>
+      <h2>🎧 AI Dictation Challenge</h2>
+      <p>Nghe hội thoại TOEIC, gõ lại và nhận điểm AI.</p>
+    </div>
+    <span class="badge">AI + RAG</span>
+  </div>
+
+  <div class="controls">
+
+    <label>
+      Chủ đề
+      <select id="dictTopic" class="field">
+        <option value="Office">Office</option>
+      </select>
+    </label>
+
+    <label>
+      Trình độ
+      <select id="dictLevel" class="field">
+        <option value="Intermediate">Intermediate</option>
+      </select>
+    </label>
+
+    <button class="btn" type="button" id="dictGenerate">
+      ✨ Tạo thử thách AI
+    </button>
+
+  </div>
+
+  <p id="dictStatus" class="muted" role="status">
+    Nhấn tạo thử thách để bắt đầu.
+  </p>
+
+  <div id="dictGame" hidden>
+
+    <h3 id="dictTitle">Listening Challenge</h3>
+
+
+<!-- Điều khiển nghe Dictation -->
+<div class="dict-audio-player">
+
+  <div class="dict-player-info">
+
+  </div>
+
+  <div class="dict-seek-area">
+    <label for="dictSeek">
+      Chọn lượt thoại muốn nghe
+    </label>
+
+    <input
+      type="range"
+      id="dictSeek"
+      min="1"
+      max="4"
+      value="1"
+      step="1"
+    />
+
+    <div class="dict-seek-labels">
+      <span>Lượt 1</span>
+      <strong id="dictPosition">
+        Lượt 1 / 4
+      </strong>
+      <span>Lượt 4</span>
+    </div>
+
+    <p class="muted" id="dictSpeaker">
+      Woman đang nói
+    </p>
+  </div>
+
+  <div class="dict-player-buttons">
+
+    <button
+      class="btn secondary"
+      type="button"
+      id="dictPrev"
+    >
+      ⏮ Lùi
+    </button>
+
+    <button
+      class="btn secondary"
+      type="button"
+      id="dictReplay"
+    >
+      🔁 Nghe lượt này
+    </button>
+
+    <button
+      class="btn"
+      type="button"
+      id="dictPlay"
+    >
+      ▶ Phát từ đây
+    </button>
+
+    <button
+      class="btn secondary"
+      type="button"
+      id="dictNext"
+    >
+      Tiến ⏭
+    </button>
+
+    <button
+      class="btn secondary"
+      type="button"
+      id="dictStop"
+    >
+      ⏹ Dừng
+    </button>
+
+  </div>
+</div>
+
+
+    <p class="muted">
+      Lắng nghe và gõ lại nội dung.
+      Transcript sẽ được hiển thị sau khi chấm.
+    </p>
+
+    <textarea
+      id="dictTyped"
+      class="dict-textarea"
+      rows="6"
+      maxlength="1500"
+      placeholder="Type what you hear..."
+    ></textarea>
+
+    <div class="controls">
+      <button class="btn" type="button" id="dictSubmit">
+        ✅ Nộp bài và chấm điểm
+      </button>
+    </div>
+
+<button
+  class="btn secondary"
+  type="button"
+  id="dictRetry"
+  hidden
+>
+  🔄 Làm lại bài này
+</button>
+
+    <div id="dictResult" class="dict-result" hidden></div>
+
+  </div>
+
+</div>
+
+</section>
+
+<section class="view" id="view-speaking">
+  <div class="section-title"><div><h2>Speaking Practice</h2><p>Luyện phát âm bằng cách nghe mẫu và đọc theo.</p></div><span class="badge">SPEAKING</span></div>
+  <div class="panel">
+    <h3>Câu luyện nói hôm nay</h3>
+    <div class="word-card"><div class="example" id="speakingSentence" style="font-size:19px;color:var(--text)">Could you please confirm the meeting schedule?</div></div>
+    <div class="controls">
+      <button class="btn" type="button" id="speakingListen">🔊 Nghe mẫu</button>
+      <button class="btn secondary" type="button" id="speakingRecord">🎤 Thử nói</button>
+      <button class="btn secondary" type="button" id="speakingNext">Câu tiếp →</button>
+    </div>
+    <div class="feedback" id="speakingFeedback" role="status">Nghe câu mẫu, sau đó đọc lại. Nhận diện giọng nói phụ thuộc trình duyệt và quyền micro.</div>
+  </div>
 </section>
 
 <section class="view" id="view-reading">
@@ -718,19 +1295,20 @@ body.admin-mode > .admin-shell { display:flex; }
 
 
 <div class="admin-shell" id="adminShell" aria-label="Khu vực quản trị TOEIC Nova">
-  <aside class="admin-sidebar">
-    <div class="admin-brand">✦ TOEIC <span>NOVA</span><small>ADMIN CONTROL CENTER</small></div>
+  <aside class="admin-sidebar" aria-label="Điều hướng quản trị">
+    <div class="admin-brand"><span class="brand-mark">✦</span><span class="brand-copy">TOEIC <span>NOVA</span><small>ADMIN CONTROL CENTER</small></span></div>
     <div class="admin-side-label">QUẢN TRỊ HỆ THỐNG</div>
     <div class="admin-side-nav" id="adminSideNav">
-      <button class="admin-side-btn active" type="button" data-admin-target="adminStats">▦ Tổng quan</button>
-      <button class="admin-side-btn" type="button" data-admin-target="adminUsers">♙ Tài khoản</button>
-      <button class="admin-side-btn" type="button" data-admin-target="adminContent">▤ Nội dung học tập</button>
-      <button class="admin-side-btn" type="button" data-admin-target="adminWriting">✍ Writing & Xếp hạng</button>
+      <button class="admin-side-btn active" type="button" data-admin-target="adminStats"><span class="side-icon">▦</span><span>Tổng quan</span></button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminUsers"><span class="side-icon">♙</span><span>Tài khoản</span></button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminContent"><span class="side-icon">▤</span><span>Nội dung học tập</span></button>
+      <button class="admin-side-btn" type="button" data-admin-target="adminWriting"><span class="side-icon">📝</span><span>Writing & Xếp hạng</span></button>
     </div>
     <div class="admin-side-bottom">
-      <button class="admin-side-btn" type="button" id="switchToStudent">↗ Giao diện học sinh</button>
-      <button class="admin-side-btn" type="button" id="adminLogout">⇥ Đăng xuất</button>
+      <button class="admin-side-btn" type="button" id="switchToStudent"><span class="side-icon">↗</span><span>Giao diện học sinh</span></button>
+      <button class="admin-side-btn" type="button" id="adminLogout"><span class="side-icon">⇥</span><span>Đăng xuất</span></button>
     </div>
+    <div class="sidebar-footer"><span class="sidebar-footer-dot"></span><span>Admin workspace</span></div>
   </aside>
   <main class="admin-workspace">
     <div class="admin-topbar">
@@ -952,6 +1530,7 @@ function showView(name) {
     vocab:["TOEIC Vocabulary","Học từ mới và ôn tập bằng flashcard."],
 
     listening:["Listening Practice","Luyện nghe câu hỏi tiếng Anh."],
+    speaking:["Speaking Practice","Luyện nói và phát âm tiếng Anh."],
 
     reading:["Reading Practice","Rèn kỹ năng đọc hiểu."],
 
@@ -978,6 +1557,47 @@ function showView(name) {
   window.scrollTo({top:0,behavior:"smooth"});
 
 }
+
+// Speaking: luyện nghe và nhận diện giọng nói trên trình duyệt (không gửi âm thanh lên server TOEIC Nova).
+const speakingSentences = [
+  "Could you please confirm the meeting schedule?",
+  "I would like to make a reservation for tomorrow.",
+  "The report will be ready by Friday afternoon.",
+  "Thank you for your time and consideration."
+];
+let speakingIndex = 0;
+$("speakingListen").onclick = () => {
+  if (!("speechSynthesis" in window)) return toast("Trình duyệt không hỗ trợ đọc mẫu.");
+  speechSynthesis.cancel();
+  const speech = new SpeechSynthesisUtterance(speakingSentences[speakingIndex]);
+  speech.lang = "en-US";
+  speech.rate = 0.85;
+  speechSynthesis.speak(speech);
+};
+$("speakingNext").onclick = () => {
+  speakingIndex = (speakingIndex + 1) % speakingSentences.length;
+  $("speakingSentence").textContent = speakingSentences[speakingIndex];
+  $("speakingFeedback").textContent = "Nghe mẫu rồi thử đọc lại câu mới nhé.";
+};
+$("speakingRecord").onclick = () => {
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Recognition) {
+    $("speakingFeedback").textContent = "Trình duyệt này chưa hỗ trợ nhận diện giọng nói. Hãy thử Chrome hoặc Edge và cho phép dùng micro.";
+    return;
+  }
+  const recognition = new Recognition();
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.onresult = event => {
+    const spoken = event.results[0][0].transcript;
+    $("speakingFeedback").textContent = "Bạn vừa nói: " + spoken + ". Hãy so sánh với câu mẫu và luyện lại nếu cần.";
+  };
+  recognition.onerror = event => {
+    $("speakingFeedback").textContent = "Không nhận diện được giọng nói (" + event.error + "). Kiểm tra quyền micro và thử lại.";
+  };
+  $("speakingFeedback").textContent = "Đang nghe... Hãy đọc câu mẫu.";
+  recognition.start();
+};
 
 document.querySelectorAll("#nav button").forEach(button =>
 
@@ -1540,6 +2160,393 @@ async function loadProgress() {
 $("refreshProgress").onclick = loadProgress;
 
 // ========================================
+// WF03 - AI VOCABULARY RAG FRONTEND
+// ========================================
+
+
+// ========================================
+// WF03 - TOEIC WORD MATCH GAME
+// ========================================
+
+let wordMatch = null;
+const wordMatchBestKey = "toeic_nova_word_match_best";
+
+// Xáo trộn các từ
+function wmShuffle(items) {
+  const copy = [...items];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+// Lấy điểm cao nhất trên trình duyệt
+function wmBest() {
+  try {
+    return Number(
+      localStorage.getItem(wordMatchBestKey)
+    ) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+// Dừng đồng hồ
+function wmStopTimer() {
+  if (wordMatch?.timer) {
+    clearInterval(wordMatch.timer);
+  }
+}
+
+// Hiển thị giao diện game
+function wmRender() {
+  const g = wordMatch;
+
+  const percent = Math.round(
+    g.matched.size / g.words.length * 100
+  );
+
+  $("aiVocabResults").innerHTML = `
+    <div class="wm-game">
+
+      <div class="wm-stats">
+        <span>⏳ <b id="wmTime">${g.seconds}</b>s</span>
+        <span>❤️ ${g.lives}</span>
+        <span>⭐ ${g.score} điểm</span>
+        <span>🔥 Combo ${g.combo}</span>
+      </div>
+
+      <div class="wm-progress">
+        <span style="width:${percent}%"></span>
+      </div>
+
+      <p class="muted">
+        Ghép từ tiếng Anh bên trái với nghĩa tiếng Việt
+        bên phải. Ghép sai mất 1 mạng!
+      </p>
+
+      <div class="wm-pairs">
+
+        <div>
+          <h4>🇬🇧 TỪ TIẾNG ANH</h4>
+
+          ${g.left.map(w => `
+            <button
+              type="button"
+              class="wm-pick
+                ${g.selected === w.id ? "selected" : ""}
+                ${g.matched.has(w.id) ? "matched" : ""}"
+              data-wm-side="word"
+              data-wm-id="${w.id}"
+              ${g.matched.has(w.id) ? "disabled" : ""}>
+              ${esc(w.word)}
+            </button>
+          `).join("")}
+        </div>
+
+        <div>
+          <h4>🇻🇳 NGHĨA TIẾNG VIỆT</h4>
+
+          ${g.right.map(w => `
+            <button
+              type="button"
+              class="wm-pick
+                ${g.matched.has(w.id) ? "matched" : ""}"
+              data-wm-side="meaning"
+              data-wm-id="${w.id}"
+              ${g.matched.has(w.id) ? "disabled" : ""}>
+              ${esc(w.meaning)}
+            </button>
+          `).join("")}
+        </div>
+
+      </div>
+
+      <p class="wm-notice" aria-live="polite">
+        ${esc(g.notice)}
+      </p>
+
+    </div>
+  `;
+}
+
+// Kết thúc trò chơi
+function wmFinish(reason) {
+  const g = wordMatch;
+
+  if (!g || g.done) return;
+
+  g.done = true;
+  wmStopTimer();
+
+  const oldBest = wmBest();
+
+  if (g.score > oldBest) {
+    try {
+      localStorage.setItem(
+        wordMatchBestKey,
+        String(g.score)
+      );
+    } catch {}
+  }
+
+  const best = Math.max(oldBest, g.score);
+
+  $("aiVocabStatus").textContent =
+    "🏁 " + reason;
+
+  $("aiVocabResults").innerHTML = `
+    <div class="wm-game wm-end">
+
+      <h3>🏆 KẾT QUẢ WORD MATCH</h3>
+      <p>${esc(reason)}</p>
+
+      <div class="wm-stats">
+        <span>⭐ ${g.score} điểm</span>
+        <span>✅ ${g.correct}/${g.words.length} cặp</span>
+        <span>⏳ Còn ${g.seconds}s</span>
+        <span>🏅 Kỷ lục máy này: ${best}</span>
+      </div>
+
+      <h4>Từ vựng vừa luyện</h4>
+
+      ${g.words.map(w => `
+        <p>
+          <strong>${esc(w.word)}</strong>
+          – ${esc(w.meaning)}
+          <br>
+          <small>${esc(w.example)}</small>
+        </p>
+      `).join("")}
+
+      <button class="btn"
+              type="button"
+              id="wmReplay">
+        🔄 Chơi lại và xáo trộn
+      </button>
+
+    </div>
+  `;
+
+  // Lưu kết quả vào MySQL nếu đã đăng nhập
+  if (currentUser) {
+    saveProgress(
+      "vocabulary",
+      0,
+      g.correct,
+      g.words.length
+    )
+      .then(() => loadProgress())
+      .catch(err => {
+        console.warn(
+          "Không lưu được kết quả game:",
+          err.message
+        );
+      });
+  }
+}
+
+// Bắt đầu một lượt chơi
+function wmStart(words) {
+  wmStopTimer();
+
+  const clean = words.map((w, id) => ({
+    id,
+    word: String(w.word || ""),
+    meaning: String(w.meaning || ""),
+    example: String(w.example || "")
+  })).filter(w => w.word && w.meaning);
+
+  if (clean.length < 2) {
+    throw new Error(
+      "Cần ít nhất 2 cặp từ để chơi."
+    );
+  }
+
+  wordMatch = {
+    words: clean,
+    left: wmShuffle(clean),
+    right: wmShuffle(clean),
+    matched: new Set(),
+    selected: null,
+    lives: 3,
+    seconds: 75,
+    score: 0,
+    combo: 0,
+    correct: 0,
+    notice: "Chọn một từ tiếng Anh để bắt đầu!",
+    done: false,
+    timer: null
+  };
+
+  $("aiVocabStatus").textContent =
+    `🎮 Bắt đầu! ${clean.length} cặp từ` +
+    ` • Kỷ lục: ${wmBest()} điểm`;
+
+  wmRender();
+
+  wordMatch.timer = setInterval(() => {
+    if (!wordMatch || wordMatch.done) return;
+
+    wordMatch.seconds = Math.max(
+      0,
+      wordMatch.seconds - 1
+    );
+
+    const label = $("wmTime");
+
+    if (label) {
+      label.textContent = wordMatch.seconds;
+    }
+
+    if (wordMatch.seconds === 0) {
+      wmFinish("Hết giờ!");
+    }
+  }, 1000);
+}
+
+// Gọi n8n tạo dữ liệu rồi bắt đầu game
+$("aiVocabForm").addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
+
+    const button = $("aiVocabGenerate");
+    const status = $("aiVocabStatus");
+
+    button.disabled = true;
+
+    wmStopTimer();
+    wordMatch = null;
+
+    $("aiVocabResults").replaceChildren();
+
+    status.textContent =
+      "🤖 Đang nhờ n8n, Gemini và Qdrant tạo bộ từ...";
+
+    try {
+      const data = await api(
+        "/api/ai/vocabulary",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            topic: $("aiVocabTopic").value,
+            level: $("aiVocabLevel").value,
+            count: Number($("aiVocabCount").value)
+          })
+        }
+      );
+
+      if (!Array.isArray(data.vocabulary)) {
+        throw new Error(
+          "AI không trả về danh sách từ."
+        );
+      }
+
+      wmStart(data.vocabulary);
+
+    } catch (err) {
+      status.textContent =
+        "❌ Không tạo được game: " + err.message;
+    } finally {
+      button.disabled = false;
+    }
+  }
+);
+
+// Xử lý người chơi chọn từ / chọn nghĩa
+$("aiVocabResults").addEventListener(
+  "click",
+  event => {
+
+    // Chơi lại không cần gọi Gemini lần nữa
+    if (event.target.closest("#wmReplay")) {
+      if (wordMatch) {
+        wmStart(wordMatch.words);
+      }
+      return;
+    }
+
+    const button = event.target.closest(
+      "[data-wm-side]"
+    );
+
+    if (!button || !wordMatch || wordMatch.done) {
+      return;
+    }
+
+    const g = wordMatch;
+    const id = Number(button.dataset.wmId);
+
+    if (g.matched.has(id)) return;
+
+    // Chọn từ tiếng Anh
+    if (button.dataset.wmSide === "word") {
+      g.selected = id;
+      g.notice =
+        "Hãy tìm nghĩa của từ đã chọn bên phải.";
+
+      wmRender();
+      return;
+    }
+
+    // Chưa chọn từ bên trái
+    if (g.selected === null) {
+      g.notice =
+        "Chọn từ tiếng Anh bên trái trước nhé!";
+
+      wmRender();
+      return;
+    }
+
+    // Ghép đúng
+    if (g.selected === id) {
+      g.combo++;
+      g.correct++;
+
+      g.score +=
+        100 + Math.min(g.combo - 1, 4) * 20;
+
+      g.matched.add(id);
+
+      g.notice =
+        "✅ Ghép đúng! " + g.words[id].example;
+
+      g.selected = null;
+
+      if (g.matched.size === g.words.length) {
+        wmFinish(
+          "Tuyệt vời! Bạn ghép đúng tất cả!"
+        );
+        return;
+      }
+
+    } else {
+      // Ghép sai
+      g.lives--;
+      g.combo = 0;
+      g.selected = null;
+
+      g.notice =
+        "❌ Chưa đúng! Bạn mất 1 mạng.";
+
+      if (g.lives <= 0) {
+        wmFinish(
+          "Hết mạng! Hãy thử lại nhé."
+        );
+        return;
+      }
+    }
+
+    wmRender();
+  }
+);
+
+
+// ========================================
 
 // TOEIC AI TUTOR - gọi Express /api/ai/chat
 
@@ -2025,6 +3032,555 @@ async function loadAdminWriting(){
 $("adminWritingRefresh").onclick=loadAdminWriting;
 const oldEnterAdminMode=enterAdminMode;
 enterAdminMode=function(){oldEnterAdminMode();loadAdminWriting();};
+
+
+// ========================================
+// WF04 - LISTENING DICTATION GAME
+// ========================================
+
+// ========================================
+// WF04 - LISTENING DICTATION PLAYER
+// Không giới hạn thời gian và số lần nghe
+// ========================================
+
+let dictationState = null;
+let dictationVoiceToken = 0;
+
+// ========================================
+// DỪNG PHÁT ÂM THANH
+// ========================================
+
+function dictationStopPlayback() {
+  dictationVoiceToken++;
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
+
+  if (dictationState) {
+    dictationState.playing = false;
+  }
+
+  dictationUpdatePlayer();
+}
+
+// ========================================
+// CẬP NHẬT THANH TUA VÀ NÚT
+// ========================================
+
+function dictationUpdatePlayer() {
+  const game = dictationState;
+  const count = game?.data?.dialogue?.length || 4;
+  const index = game?.index || 0;
+
+  $("dictSeek").max = String(count);
+  $("dictSeek").value = String(index + 1);
+
+  $("dictPosition").textContent =
+    `Lượt ${index + 1} / ${count}`;
+
+  const speaker = game?.data?.dialogue?.[index]?.speaker;
+
+  $("dictSpeaker").textContent = speaker
+    ? `${speaker} - Lượt nói ${index + 1}`
+    : "Chưa có bài nghe";
+
+  const unavailable = !game || game.busy;
+
+  $("dictSeek").disabled = unavailable;
+  $("dictPrev").disabled =
+    unavailable || index === 0;
+
+  $("dictNext").disabled =
+    unavailable || index >= count - 1;
+
+  $("dictReplay").disabled = unavailable;
+  $("dictPlay").disabled = unavailable;
+
+  $("dictStop").disabled =
+    unavailable || !game.playing;
+
+  $("dictSubmit").disabled =
+    unavailable || game.done;
+}
+
+// ========================================
+// PHÁT TỪ LƯỢT THOẠI ĐÃ CHỌN
+//
+// playAll = true: đọc từ đây đến cuối
+// playAll = false: chỉ đọc lượt này
+// ========================================
+
+function dictationPlayFrom(startIndex, playAll = true) {
+  const game = dictationState;
+
+  if (!game || game.busy) return;
+
+  if (!window.speechSynthesis) {
+    $("dictStatus").textContent =
+      "Trình duyệt không hỗ trợ giọng đọc.";
+    return;
+  }
+
+  const count = game.data.dialogue.length;
+
+  const first = Math.max(
+    0,
+    Math.min(startIndex, count - 1)
+  );
+
+  // Hủy lượt đọc cũ để tránh 2 giọng nói chồng nhau
+  dictationStopPlayback();
+
+  const token = ++dictationVoiceToken;
+
+  game.playing = true;
+  game.index = first;
+
+  dictationUpdatePlayer();
+
+  $("dictStatus").textContent =
+    playAll
+      ? "🎧 Đang phát hội thoại từ lượt đã chọn..."
+      : "🎧 Đang phát lại lượt thoại...";
+
+  function speakLine(index) {
+    // Nếu người học đã tua/dừng, bỏ lượt đọc cũ
+    if (
+      dictationVoiceToken !== token ||
+      dictationState !== game ||
+      game.busy
+    ) {
+      return;
+    }
+
+    if (index >= count) {
+      game.playing = false;
+      dictationUpdatePlayer();
+
+      $("dictStatus").textContent =
+        "✅ Đã nghe xong. Bạn có thể nghe lại " +
+        "bao nhiêu lần cũng được.";
+
+      return;
+    }
+
+    game.index = index;
+    dictationUpdatePlayer();
+
+    const line = game.data.dialogue[index];
+
+    const utterance =
+      new SpeechSynthesisUtterance(line.text);
+
+    utterance.lang = "en-US";
+    utterance.rate = 0.87;
+
+    utterance.pitch =
+      line.speaker === "Woman" ? 1.12 : 0.88;
+
+    utterance.onend = () => {
+      if (
+        dictationVoiceToken !== token ||
+        dictationState !== game
+      ) {
+        return;
+      }
+
+      if (playAll && index + 1 < count) {
+        speakLine(index + 1);
+      } else {
+        game.playing = false;
+        dictationUpdatePlayer();
+
+        $("dictStatus").textContent =
+          "✅ Đã phát xong. Có thể tua hoặc nghe lại.";
+      }
+    };
+
+    utterance.onerror = () => {
+      if (
+        dictationVoiceToken !== token ||
+        dictationState !== game
+      ) {
+        return;
+      }
+
+      game.playing = false;
+      dictationUpdatePlayer();
+
+      $("dictStatus").textContent =
+        "Không phát được âm thanh. " +
+        "Hãy kiểm tra giọng đọc của trình duyệt.";
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  speakLine(first);
+}
+
+// ========================================
+// TUA ĐẾN LƯỢT THOẠI BẤT KỲ
+// ========================================
+
+function dictationSeekTo(index) {
+  const game = dictationState;
+  if (!game || game.busy) return;
+
+  const count = game.data.dialogue.length;
+
+  const position = Math.max(
+    0,
+    Math.min(index, count - 1)
+  );
+
+  const wasPlaying = game.playing;
+
+  game.index = position;
+
+  if (wasPlaying) {
+    // Khi đang nghe, tua xong sẽ phát tiếp
+    dictationPlayFrom(position, true);
+  } else {
+    dictationUpdatePlayer();
+
+    $("dictStatus").textContent =
+      `Đã chọn lượt ${position + 1}. ` +
+      "Nhấn Phát từ đây để nghe.";
+  }
+}
+
+// Kéo thanh chọn lượt thoại
+$("dictSeek").addEventListener("input", event => {
+  const index = Number(event.target.value) - 1;
+  dictationSeekTo(index);
+});
+
+// Lùi về lượt thoại trước
+$("dictPrev").addEventListener("click", () => {
+  if (!dictationState) return;
+
+  dictationSeekTo(dictationState.index - 1);
+});
+
+// Tiến sang lượt thoại sau
+$("dictNext").addEventListener("click", () => {
+  if (!dictationState) return;
+
+  dictationSeekTo(dictationState.index + 1);
+});
+
+// Nghe lại một lượt thoại
+$("dictReplay").addEventListener("click", () => {
+  if (!dictationState) return;
+
+  dictationPlayFrom(
+    dictationState.index,
+    false
+  );
+});
+
+// Phát liên tục từ vị trí hiện tại đến cuối
+$("dictPlay").addEventListener("click", () => {
+  if (!dictationState) return;
+
+  dictationPlayFrom(
+    dictationState.index,
+    true
+  );
+});
+
+// Dừng âm thanh
+$("dictStop").addEventListener("click", () => {
+  dictationStopPlayback();
+
+  $("dictStatus").textContent =
+    "⏹ Đã dừng. Bạn có thể phát lại bất cứ lúc nào.";
+});
+
+// ========================================
+// TẠO THỬ THÁCH AI TỪ N8N
+// ========================================
+
+$("dictGenerate").addEventListener("click", async () => {
+  dictationStopPlayback();
+  dictationState = null;
+
+  $("dictGenerate").disabled = true;
+  $("dictGame").hidden = true;
+  $("dictResult").hidden = true;
+
+  $("dictStatus").textContent =
+    "Đang gọi n8n, Qdrant và Gemini tạo hội thoại...";
+
+  try {
+    const data = await api(
+      "/api/ai/dictation/generate",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          topic: $("dictTopic").value,
+          level: $("dictLevel").value
+        })
+      }
+    );
+
+    if (
+      !data.challengeId ||
+      !Array.isArray(data.dialogue) ||
+      data.dialogue.length !== 4
+    ) {
+      throw new Error("Bài nghe không hợp lệ.");
+    }
+
+    dictationState = {
+      data,
+      index: 0,
+      playing: false,
+      busy: false,
+      done: false
+    };
+
+    $("dictTitle").textContent =
+      data.title || "TOEIC Dictation";
+
+    $("dictTyped").value = "";
+    $("dictTyped").disabled = false;
+
+    $("dictResult").hidden = true;
+    $("dictGame").hidden = false;
+
+    dictationUpdatePlayer();
+
+    $("dictStatus").textContent =
+      "✅ Đề đã sẵn sàng! " +
+      "Nghe và gõ lại không giới hạn thời gian.";
+
+  } catch (err) {
+    $("dictStatus").textContent =
+      "❌ " + err.message;
+
+  } finally {
+    $("dictGenerate").disabled = false;
+  }
+});
+
+// ========================================
+// HIỂN THỊ KẾT QUẢ CHẤM TỪNG TỪ
+// ========================================
+
+function dictationShowResult(data) {
+  const game = dictationState;
+
+  const classes = {
+    correct: "dict-correct",
+    wrong: "dict-wrong",
+    missing: "dict-missing",
+    extra: "dict-extra"
+  };
+
+  const comparison = (data.comparison || [])
+    .map(item => {
+      const type = classes[item.type]
+        ? item.type
+        : "wrong";
+
+      let label = "";
+
+      if (type === "correct") {
+        label = item.expected;
+      } else if (type === "wrong") {
+        label =
+          `${item.actual} → ${item.expected}`;
+      } else if (type === "missing") {
+        label =
+          `[Thiếu: ${item.expected}]`;
+      } else {
+        label =
+          `[Thừa: ${item.actual}]`;
+      }
+
+      return `
+        <span class="dict-token ${classes[type]}">
+          ${esc(label)}
+        </span>
+      `;
+    })
+    .join(" ");
+
+  const vocabulary = (
+    game?.data?.vocabularyFocus || []
+  )
+    .map(item => `
+      <li>
+        <strong>${esc(item.word)}</strong>:
+        ${esc(item.meaning)}
+      </li>
+    `)
+    .join("");
+
+  $("dictResult").innerHTML = `
+    <h3>🏆 Kết quả: ${Number(data.accuracy)}%</h3>
+
+    <p>
+      ✅ Đúng ${Number(data.correctWords)}
+      /${Number(data.totalWords)} từ
+    </p>
+
+    <p>
+      Trình độ tiếp theo:
+      <strong>${esc(data.nextLevel)}</strong>
+    </p>
+
+    <p>${esc(data.recommendation || "")}</p>
+
+    <h4>So sánh từng từ</h4>
+
+    <div class="dict-comparison">
+      ${comparison}
+    </div>
+
+    <p class="muted">
+      🟢 Xanh: đúng |
+      🔴 Đỏ: sai |
+      🟠 Cam: thiếu/thừa
+    </p>
+
+    <h4>Transcript gốc</h4>
+
+    <p>${esc(data.referenceText || "")}</p>
+
+    <h4>Từ vựng trọng tâm</h4>
+
+    <ul>${vocabulary}</ul>
+  `;
+
+  $("dictResult").hidden = false;
+  $("dictRetry").hidden = false;
+}
+
+// ========================================
+// NỘP BÀI - KHÔNG GIỚI HẠN THỜI GIAN
+// ========================================
+
+async function dictationSubmit() {
+  const game = dictationState;
+
+  if (!game || game.done || game.busy) return;
+
+  const typedText = $("dictTyped").value.trim();
+
+  if (!typedText) {
+    $("dictStatus").textContent =
+      "Bạn cần gõ câu trả lời trước khi nộp.";
+    return;
+  }
+
+  game.busy = true;
+
+  dictationStopPlayback();
+  dictationUpdatePlayer();
+
+  $("dictStatus").textContent =
+    "Đang gửi bài đến n8n để chấm điểm...";
+
+  try {
+    const data = await api(
+      "/api/ai/dictation/grade",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          challengeId: game.data.challengeId,
+          typedText
+        })
+      }
+    );
+
+    game.done = true;
+    $("dictTyped").disabled = true;
+
+    dictationShowResult(data);
+
+    $("dictStatus").textContent =
+      "✅ Chấm xong! Bạn vẫn có thể nghe lại. " +
+      "Nhấn Tạo thử thách AI để chơi bài mới.";
+
+    // Giữ khả năng lưu tiến độ đang có
+    if (typeof currentUser !== "undefined" &&
+        currentUser) {
+      try {
+        await saveProgress(
+          "listening",
+          0,
+          data.accuracy,
+          100
+        );
+
+        await loadProgress();
+
+      } catch (err) {
+        console.warn(
+          "Chưa lưu được tiến độ:",
+          err.message
+        );
+      }
+    }
+
+  } catch (err) {
+    $("dictStatus").textContent =
+      "❌ Lỗi chấm bài: " + err.message +
+      ". Bạn có thể nộp lại.";
+
+  } finally {
+    game.busy = false;
+    dictationUpdatePlayer();
+  }
+}
+
+$("dictSubmit").addEventListener(
+  "click",
+  dictationSubmit
+);
+
+// =====================================
+// WF04 - LÀM LẠI BÀI DICTATION HIỆN TẠI
+// =====================================
+
+$("dictRetry").addEventListener("click", () => {
+  if (!dictationState || dictationState.busy) return;
+
+  // Cho phép làm bài và nộp lại
+  dictationState.done = false;
+
+  // Xóa nội dung đã gõ
+  $("dictTyped").value = "";
+  $("dictTyped").disabled = false;
+
+  // Mở lại nút nộp bài
+  $("dictSubmit").disabled = false;
+  $("dictSubmit").textContent =
+    "✅ Nộp bài và chấm điểm";
+
+  // Ẩn kết quả và nút làm lại
+  $("dictResult").hidden = true;
+  $("dictRetry").hidden = true;
+
+  // Nếu đang dùng MP3, đưa âm thanh về đầu bài
+  const audio = document.getElementById("dictAudio");
+
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  $("dictStatus").textContent =
+    "🔄 Bạn đang làm lại bài cũ. " +
+    "Hãy nghe và gõ lại, không giới hạn thời gian.";
+
+  $("dictTyped").focus();
+});
+
 
 </script>
 
