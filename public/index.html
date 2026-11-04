@@ -1109,8 +1109,76 @@ body.admin-mode > .admin-shell { display:flex; }
   </div>
 </section>
 
+<!-- READING AI -->
 <section class="view" id="view-reading">
 
+  <div class="section-title">
+    <div>
+      <h2>📖 TOEIC Reading AI</h2>
+      <p>Luyện đọc TOEIC Part 7 với Gemini AI</p>
+    </div>
+  </div>
+
+  <div class="panel">
+
+    <h3>⚙️ Tạo bài Reading</h3>
+
+    <div style="display:flex;gap:15px;flex-wrap:wrap;margin:20px 0">
+
+      <label>
+        Chủ đề
+        <select class="field" id="readingTopic">
+          <option value="Office">Office</option>
+          <option value="Travel">Travel</option>
+          <option value="Finance">Finance</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Recruitment">Recruitment</option>
+        </select>
+      </label>
+
+      <label>
+        Trình độ
+        <select class="field" id="readingLevel">
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </label>
+
+      
+    </div>
+
+    <button class="btn" id="readingGenerate">
+      ✨ Tạo bài đọc AI
+    </button>
+
+    <div id="readingStatus" style="margin-top:15px"></div>
+
+    <div id="readingExercise" hidden>
+
+      <h3 id="readingTitle"></h3>
+
+      <div
+        class="passage"
+        id="readingPassage"
+        style="white-space:pre-wrap;margin:20px 0">
+      </div>
+
+      <h3>📝 Câu hỏi trắc nghiệm</h3>
+
+      <div id="readingQuestions"></div>
+
+      <button class="btn" id="checkReading">
+        Nộp bài
+      </button>
+
+      <div id="readFeedback" style="margin-top:20px"></div>
+
+    </div>
+
+  </div>
+
+</section>
   <div class="section-title"><div><h2>Reading Practice</h2><p>Luyện đọc email và thông báo.</p></div><span class="badge">PART 6–7</span></div>
 
   <div class="panel">
@@ -2035,41 +2103,254 @@ $("nextListening").onclick = () => {
 
 };
 
-$("checkReading").onclick = async () => {
+// ========================================
+// READING AI - TOEIC NOVA
+// ========================================
 
-  const answers = {read1:"B",read2:"C"};
+let readingAttemptId = null;
 
-  let score = 0;
+// TẠO BÀI READING
+$("readingGenerate").onclick = async () => {
 
-  Object.entries(answers).forEach(([name,correct]) => {
-
-    const selected = document.querySelector(`input[name="${name}"]:checked`);
-
-    if (selected && selected.value === correct) score++;
-
-  });
-
-  $("readFeedback").innerHTML = `
-
-    <div class="feedback">
-
-      Bạn đúng ${score}/2 câu (${score*50}%).<br>
-
-      Đáp án: 1-B, 2-C. Hãy chú ý lý do phòng họp đóng cửa và hành động cần thực hiện.
-
-    </div>
-
-  `;
+  const topic = $("readingTopic").value;
+  const level = $("readingLevel").value;
+  const count = 3;
+  $("readingStatus").textContent = "⏳ AI đang tạo bài đọc...";
+  $("readingGenerate").disabled = true;
+  $("readingExercise").hidden = true;
 
   try {
 
-    await saveProgress("reading", 0, score, 2);
+    const data = await api("/api/reading/generate", {
+      method: "POST",
+      body: JSON.stringify({
+        topic,
+        level,
+        count
+      })
+    });
 
-    await loadProgress();
+    readingAttemptId = data.attemptId;
+
+    $("readingTitle").textContent = data.title;
+    $("readingPassage").textContent = data.passage;
+
+    const container = $("readingQuestions");
+
+    container.innerHTML = "";
+
+    data.questions.forEach((q, index) => {
+
+      const box = document.createElement("div");
+      box.className = "question";
+
+      const title = document.createElement("h4");
+      title.textContent = `${index + 1}. ${q.question}`;
+
+      box.appendChild(title);
+
+      ["A", "B", "C", "D"].forEach(letter => {
+
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const input = document.createElement("input");
+
+        input.type = "radio";
+        input.name = `reading_${index + 1}`;
+        input.value = letter;
+
+        label.appendChild(input);
+
+        label.appendChild(
+          document.createTextNode(
+            ` ${letter}. ${q.options[letter]}`
+          )
+        );
+
+        box.appendChild(label);
+
+      });
+
+      container.appendChild(box);
+
+    });
+
+    $("readFeedback").innerHTML = "";
+    $("checkReading").disabled = false;
+    $("readingExercise").hidden = false;
+
+    $("readingStatus").textContent =
+      "✅ Đã tạo bài đọc thành công!";
 
   } catch (error) {
 
-    toast(error.message);
+    $("readingStatus").textContent =
+      "❌ " + error.message;
+
+  } finally {
+
+    $("readingGenerate").disabled = false;
+
+  }
+
+};
+
+
+// ========================================
+// NỘP BÀI VÀ CHẤM ĐIỂM
+// ========================================
+
+$("checkReading").onclick = async () => {
+
+  if (!readingAttemptId) {
+    alert("Bạn chưa tạo bài Reading!");
+    return;
+  }
+
+  const answers = {};
+
+  const questions =
+    document.querySelectorAll("#readingQuestions .question");
+
+  questions.forEach((box, index) => {
+
+    const selected =
+      box.querySelector("input[type=radio]:checked");
+
+    if (selected) {
+      answers[index + 1] = selected.value;
+    }
+
+  });
+
+  $("checkReading").disabled = true;
+  $("readingStatus").textContent = "⏳ Đang chấm bài...";
+
+  try {
+
+    const data = await api("/api/reading/submit", {
+      method: "POST",
+      body: JSON.stringify({
+        attemptId: readingAttemptId,
+        answers
+      })
+    });
+
+    const result = $("readFeedback");
+    result.replaceChildren();
+
+    const heading = document.createElement("h3");
+    heading.textContent =
+      `🎯 Kết quả: ${data.score}/${data.total} câu đúng`;
+
+    result.appendChild(heading);
+
+    data.details.forEach(item => {
+
+      const box = document.createElement("div");
+      box.className = "feedback";
+
+      const title = document.createElement("h4");
+
+      title.textContent =
+        `Câu ${item.id}: ${item.correct ? "✅ Đúng" : "❌ Sai"}`;
+
+      box.appendChild(title);
+
+      const answer = document.createElement("p");
+      answer.textContent =
+        `Bạn chọn: ${item.selected || "Chưa chọn"} | Đáp án đúng: ${item.answer}`;
+
+      box.appendChild(answer);
+
+      const explanation = document.createElement("p");
+      explanation.textContent =
+        `💡 Giải thích: ${item.explanation}`;
+
+      box.appendChild(explanation);
+
+      const evidence = document.createElement("p");
+      evidence.textContent =
+        `📌 Dẫn chứng: ${item.evidence}`;
+
+      box.appendChild(evidence);
+
+      Object.entries(item.wrongOptions || {}).forEach(
+        ([letter, reason]) => {
+
+          const p = document.createElement("p");
+
+          p.textContent =
+            `Vì sao ${letter} sai: ${reason}`;
+
+          box.appendChild(p);
+
+        }
+      );
+
+      result.appendChild(box);
+
+    });
+
+    // BẢN DỊCH
+    const translation = document.createElement("details");
+
+    const translationTitle = document.createElement("summary");
+    translationTitle.textContent = "📖 Xem bản dịch tiếng Việt";
+
+    const translationText = document.createElement("p");
+    translationText.textContent = data.translation;
+    translationText.style.whiteSpace = "pre-wrap";
+
+    translation.append(translationTitle, translationText);
+    result.appendChild(translation);
+
+    // TỪ VỰNG
+    const vocabulary = document.createElement("details");
+
+    const vocabularyTitle = document.createElement("summary");
+    vocabularyTitle.textContent = "📚 Từ vựng quan trọng";
+
+    vocabulary.appendChild(vocabularyTitle);
+
+    (data.vocabulary || []).forEach(v => {
+
+      const p = document.createElement("p");
+      p.textContent = `${v.word}: ${v.meaning}`;
+
+      vocabulary.appendChild(p);
+
+    });
+
+    result.appendChild(vocabulary);
+
+    document.querySelectorAll(
+      "#readingQuestions input"
+    ).forEach(input => {
+      input.disabled = true;
+    });
+
+    $("readingStatus").textContent =
+      "✅ Đã chấm bài!";
+
+    try {
+      await saveProgress(
+        "reading", 0, data.score, data.total
+      );
+
+      await loadProgress();
+
+    } catch (error) {
+      console.warn("Không lưu được tiến độ:", error.message);
+    }
+
+  } catch (error) {
+
+    $("readingStatus").textContent =
+      "❌ " + error.message;
+
+    $("checkReading").disabled = false;
 
   }
 

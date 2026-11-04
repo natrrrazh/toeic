@@ -1459,7 +1459,7 @@ app.post("/api/ai/dictation/grade", async (req, res) => {
 // 15. API KHONG TON TAI
 
 // ========================================
-
+app.use("/api/reading", require("./reading-routes"));
 app.use("/api", (req, res) => {
 
     res.status(404).json({
@@ -1513,7 +1513,7 @@ app.use((error, req, res, next) => {
 // 17. KHOI DONG SERVER
 
 // ========================================
-
+// API READING
 
 app.listen(PORT, () => {
   console.log("SERVER FILE:", __filename);
