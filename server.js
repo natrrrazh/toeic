@@ -148,12 +148,30 @@ app.use("/api/writing", writingRoutes);
 
 // ========================================
 
+// ========================================
+// 5. FRONTEND - TOEIC NOVA
+// ========================================
+
+// Trang chủ giới thiệu trung tâm
+app.get("/", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "public", "landing.html")
+    );
+});
+
+// Trang học TOEIC
+app.get("/learn", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "public", "learn.html")
+    );
+});
+
+// Các file CSS, JavaScript và hình ảnh
 app.use(express.static(
-
-    path.join(__dirname, "public")
-
+    path.join(__dirname, "public"), {
+        index: false
+    }
 ));
-
 
 
 // ========================================
