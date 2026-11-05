@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TOEIC NOVA | Smart English Lab</title>
 
@@ -13,526 +12,511 @@
 
 <body>
 
-<!-- HEADER -->
+    <!-- HEADER -->
 
-<header class="header">
+    <header class="header">
 
-    <div class="logo">
-        ✦ TOEIC <span>NOVA</span>
-    </div>
-
-    <nav>
-        <a href="#home">Trang chủ</a>
-        <a href="#courses">Khóa học</a>
-        <a href="#about">Giới thiệu</a>
-        <a href="#features">Tính năng</a>
-        <a href="#contact">Liên hệ</a>
-    </nav>
-
-    <div class="header-buttons">
-        <a href="/learn?auth=login"
-           class="btn-outline">
-            Đăng nhập
-        </a>
-
-        <a href="/learn?auth=register"
-           class="btn-primary">
-            Đăng ký
-        </a>
-    </div>
-
-</header>
-
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            ✦ SMART ENGLISH LEARNING
+        <div class="logo">
+            ✦ TOEIC <span>NOVA</span>
         </div>
 
-        <h1>
-            Chinh phục TOEIC
-            <br>
-            <span>cùng TOEIC NOVA</span>
-        </h1>
-
-        <p>
-            Nền tảng học TOEIC thông minh với
-            AI hỗ trợ luyện tập Listening,
-            Speaking, Reading và Writing.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#courses"
-               class="btn-primary">
-                Khám phá khóa học →
-            </a>
-
-            <a href="/learn"
-               class="btn-outline">
-                Bắt đầu học
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="hero-card">
-
-        <div class="dashboard-preview">
-
-            <h3>✦ TOEIC NOVA</h3>
-
-            <p>YOUR PERSONAL TOEIC SPACE</p>
-
-            <div class="preview-item">
-                📖 Reading Practice
-            </div>
-
-            <div class="preview-item">
-                🎧 Listening Practice
-            </div>
-
-            <div class="preview-item">
-                ✍ Writing Practice
-            </div>
-
-            <div class="preview-item">
-                🎤 Speaking Practice
-            </div>
-
-            <div class="streak">
-                🔥 Duy trì chuỗi ngày học
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- COURSES -->
-
-<section class="courses section" id="courses">
-
-    <div class="section-heading">
-
-        <span class="section-label">
-            OUR COURSES
-        </span>
-
-        <h2>Khám phá khóa học</h2>
-
-        <p>
-            Lựa chọn chương trình phù hợp
-            với trình độ và mục tiêu của bạn.
-        </p>
-
-    </div>
-
-    <div class="course-filters">
-
-        <button class="filter active"
-                data-filter="all">
-            Tất cả
-        </button>
-
-        <button class="filter"
-                data-filter="free">
-            Miễn phí
-        </button>
-
-        <button class="filter"
-                data-filter="premium">
-            Trả phí
-        </button>
-
-    </div>
-
-
-    <div class="course-grid">
-
-        <!-- FREE READING -->
-
-        <div class="course-card" data-kind="free">
-
-            <div class="course-icon">
-                📖
-            </div>
-
-            <span class="free-badge">
-                FREE
-            </span>
-
-            <h3>TOEIC Reading Starter</h3>
-
-            <p>
-                Luyện đọc hiểu TOEIC,
-                làm quen Part 7 và
-                các dạng câu hỏi phổ biến.
-            </p>
-
-            <div class="course-info">
-                <span>📚 Cơ bản</span>
-                <span>⏱ Tự học</span>
-            </div>
-
-            <div class="course-footer">
-
-                <strong>Miễn phí</strong>
-
-                <a href="/learn?view=reading"
-                   class="btn-primary">
-                    Học ngay →
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- FREE LISTENING -->
-
-        <div class="course-card" data-kind="free">
-
-            <div class="course-icon">
-                🎧
-            </div>
-
-            <span class="free-badge">
-                FREE
-            </span>
-
-            <h3>TOEIC Listening Basics</h3>
-
-            <p>
-                Luyện nghe TOEIC,
-                nhận diện từ khóa
-                và cải thiện phản xạ.
-            </p>
-
-            <div class="course-info">
-                <span>🎧 Listening</span>
-                <span>⏱ Tự học</span>
-            </div>
-
-            <div class="course-footer">
-
-                <strong>Miễn phí</strong>
-
-                <a href="/learn?view=listening"
-                   class="btn-primary">
-                    Học ngay →
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- PREMIUM WRITING -->
-
-        <div class="course-card premium"
-             data-kind="premium">
-
-            <div class="course-icon">
-                ✍️
-            </div>
-
-            <span class="premium-badge">
-                PREMIUM
-            </span>
-
-            <h3>Writing AI Intensive</h3>
-
-            <p>
-                Luyện Writing nâng cao,
-                nhận phản hồi AI
-                và cải thiện kỹ năng viết.
-            </p>
-
-            <div class="course-info">
-                <span>🤖 AI Support</span>
-                <span>⭐ Nâng cao</span>
-            </div>
-
-            <div class="course-footer">
-
-                <strong>Liên hệ học phí</strong>
-
-                <a href="#contact"
-                   class="btn-primary">
-                    Tìm hiểu →
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- PREMIUM COMPLETE -->
-
-        <div class="course-card premium"
-             data-kind="premium">
-
-            <div class="course-icon">
-                🏆
-            </div>
-
-            <span class="premium-badge">
-                PREMIUM
-            </span>
-
-            <h3>TOEIC Complete Path</h3>
-
-            <p>
-                Chương trình luyện TOEIC
-                toàn diện với cả
-                bốn kỹ năng tiếng Anh.
-            </p>
-
-            <div class="course-info">
-                <span>📚 4 kỹ năng</span>
-                <span>⭐ Tổng hợp</span>
-            </div>
-
-            <div class="course-footer">
-
-                <strong>Liên hệ học phí</strong>
-
-                <a href="#contact"
-                   class="btn-primary">
-                    Tìm hiểu →
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <p class="course-note">
-        * Các khóa học và quyền lợi Premium
-        hiện là nội dung giới thiệu mẫu.
-        Chức năng thanh toán chưa được kích hoạt.
-    </p>
-
-</section>
-
-
-<!-- ABOUT CENTER -->
-
-<section class="about section" id="about">
-
-    <div class="about-content">
-
-        <span class="section-label">
-            ABOUT US
-        </span>
-
-        <h2>
-            Giới thiệu
-            <span>TOEIC NOVA</span>
-        </h2>
-
-        <p>
-            TOEIC NOVA – Smart English Lab
-            hướng đến việc xây dựng một môi trường
-            học tiếng Anh hiện đại,
-            thuận tiện và dễ tiếp cận.
-        </p>
-
-        <p>
-            Nền tảng kết hợp các bài luyện
-            Listening, Speaking, Reading,
-            Writing và công cụ AI,
-            giúp học viên chủ động
-            trong quá trình học tập.
-        </p>
-
-        <div class="about-features">
-
-            <div>
-                ✓ Luyện tập 4 kỹ năng
-            </div>
-
-            <div>
-                ✓ Công cụ hỗ trợ AI
-            </div>
-
-            <div>
-                ✓ Theo dõi tiến độ học tập
-            </div>
-
-            <div>
-                ✓ Xây dựng thói quen học mỗi ngày
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="about-visual">
-
-        <div class="about-logo">
-            ✦
-        </div>
-
-        <h3>TOEIC NOVA</h3>
-
-        <p>SMART ENGLISH LAB</p>
-
-    </div>
-
-</section>
-
-
-<!-- FEATURES -->
-
-<section class="features section" id="features">
-
-    <div class="section-heading">
-
-        <span class="section-label">
-            WHY CHOOSE US
-        </span>
-
-        <h2>Tính năng nổi bật</h2>
-
-        <p>
-            Những công cụ giúp bạn học TOEIC
-            chủ động và hiệu quả hơn.
-        </p>
-
-    </div>
-
-    <div class="feature-grid">
-
-        <div class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3>AI Tutor</h3>
-            <p>
-                Hỏi đáp kiến thức TOEIC
-                và nhận hỗ trợ học tập từ AI.
-            </p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>4 kỹ năng</h3>
-            <p>
-                Luyện Listening, Speaking,
-                Reading và Writing.
-            </p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">🔥</div>
-            <h3>Learning Streak</h3>
-            <p>
-                Xây dựng thói quen
-                học tập liên tục mỗi ngày.
-            </p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Learning Progress</h3>
-            <p>
-                Theo dõi kết quả
-                và lịch sử học tập.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="cta section">
-
-    <h2>
-        Sẵn sàng bắt đầu
-        hành trình TOEIC?
-    </h2>
-
-    <p>
-        Tạo tài khoản và khám phá
-        không gian học TOEIC NOVA.
-    </p>
-
-    <a href="/learn?auth=register"
-       class="btn-primary">
-        Bắt đầu miễn phí →
-    </a>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer id="contact">
-
-    <div class="footer-content">
-
-        <div>
-
-            <h3>✦ TOEIC NOVA</h3>
-
-            <p>
-                Smart English Lab
-            </p>
-
-        </div>
-
-        <div>
-
-            <h4>Khám phá</h4>
-
+        <nav>
+            <a href="#home">Trang chủ</a>
             <a href="#courses">Khóa học</a>
             <a href="#about">Giới thiệu</a>
             <a href="#features">Tính năng</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+
+        <div class="header-buttons">
+            <a href="/login" class="btn-outline">
+                Đăng nhập
+            </a>
+            <a href="/register" class="btn-primary">
+                Đăng ký
+            </a>
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ SMART ENGLISH LEARNING
+            </div>
+
+            <h1>
+                Chinh phục TOEIC
+                <br>
+                <span>cùng TOEIC NOVA</span>
+            </h1>
+
+            <p>
+                Nền tảng học TOEIC thông minh với
+                AI hỗ trợ luyện tập Listening,
+                Speaking, Reading và Writing.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#courses" class="btn-primary">
+                    Khám phá khóa học →
+                </a>
+                <a href="/login" class="btn-outline">
+                    Bắt đầu học
+                </a>
+
+            </div>
 
         </div>
 
-        <div>
+        <div class="hero-card">
 
-            <h4>Học tập</h4>
+            <div class="dashboard-preview">
 
-            <a href="/learn">Trang học</a>
-            <a href="/learn?view=reading">Reading</a>
-            <a href="/learn?view=writing">Writing</a>
+                <h3>✦ TOEIC NOVA</h3>
+
+                <p>YOUR PERSONAL TOEIC SPACE</p>
+
+                <div class="preview-item">
+                    📖 Reading Practice
+                </div>
+
+                <div class="preview-item">
+                    🎧 Listening Practice
+                </div>
+
+                <div class="preview-item">
+                    ✍ Writing Practice
+                </div>
+
+                <div class="preview-item">
+                    🎤 Speaking Practice
+                </div>
+
+                <div class="streak">
+                    🔥 Duy trì chuỗi ngày học
+                </div>
+
+            </div>
 
         </div>
 
-        <div>
+    </section>
 
-            <h4>Liên hệ</h4>
 
-            <p>Địa chỉ: Đang cập nhật</p>
-            <p>Email: Đang cập nhật</p>
-            <p>Điện thoại: Đang cập nhật</p>
+    <!-- COURSES -->
+
+    <section class="courses section" id="courses">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                OUR COURSES
+            </span>
+
+            <h2>Khám phá khóa học</h2>
+
+            <p>
+                Lựa chọn chương trình phù hợp
+                với trình độ và mục tiêu của bạn.
+            </p>
 
         </div>
 
-    </div>
+        <div class="course-filters">
 
-    <div class="copyright">
-        © <span id="year"></span>
-        TOEIC NOVA. All rights reserved.
-    </div>
+            <button class="filter active" data-filter="all">
+                Tất cả
+            </button>
 
-</footer>
+            <button class="filter" data-filter="free">
+                Miễn phí
+            </button>
 
-<script src="/landing.js"></script>
+            <button class="filter" data-filter="premium">
+                Trả phí
+            </button>
+
+        </div>
+
+
+        <div class="course-grid">
+
+            <!-- FREE READING -->
+
+            <div class="course-card" data-kind="free">
+
+                <div class="course-icon">
+                    📖
+                </div>
+
+                <span class="free-badge">
+                    FREE
+                </span>
+
+                <h3>TOEIC Reading Starter</h3>
+
+                <p>
+                    Luyện đọc hiểu TOEIC,
+                    làm quen Part 7 và
+                    các dạng câu hỏi phổ biến.
+                </p>
+
+                <div class="course-info">
+                    <span>📚 Cơ bản</span>
+                    <span>⏱ Tự học</span>
+                </div>
+
+                <div class="course-footer">
+
+                    <strong>Miễn phí</strong>
+
+                    <a href="/learn?view=reading" class="btn-primary">
+                        Học ngay →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- FREE LISTENING -->
+
+            <div class="course-card" data-kind="free">
+
+                <div class="course-icon">
+                    🎧
+                </div>
+
+                <span class="free-badge">
+                    FREE
+                </span>
+
+                <h3>TOEIC Listening Basics</h3>
+
+                <p>
+                    Luyện nghe TOEIC,
+                    nhận diện từ khóa
+                    và cải thiện phản xạ.
+                </p>
+
+                <div class="course-info">
+                    <span>🎧 Listening</span>
+                    <span>⏱ Tự học</span>
+                </div>
+
+                <div class="course-footer">
+
+                    <strong>Miễn phí</strong>
+
+                    <a href="/learn?view=listening" class="btn-primary">
+                        Học ngay →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREMIUM WRITING -->
+
+            <div class="course-card premium" data-kind="premium">
+
+                <div class="course-icon">
+                    ✍️
+                </div>
+
+                <span class="premium-badge">
+                    PREMIUM
+                </span>
+
+                <h3>Writing AI Intensive</h3>
+
+                <p>
+                    Luyện Writing nâng cao,
+                    nhận phản hồi AI
+                    và cải thiện kỹ năng viết.
+                </p>
+
+                <div class="course-info">
+                    <span>🤖 AI Support</span>
+                    <span>⭐ Nâng cao</span>
+                </div>
+
+                <div class="course-footer">
+
+                    <strong>Liên hệ học phí</strong>
+
+                    <a href="#contact" class="btn-primary">
+                        Tìm hiểu →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREMIUM COMPLETE -->
+
+            <div class="course-card premium" data-kind="premium">
+
+                <div class="course-icon">
+                    🏆
+                </div>
+
+                <span class="premium-badge">
+                    PREMIUM
+                </span>
+
+                <h3>TOEIC Complete Path</h3>
+
+                <p>
+                    Chương trình luyện TOEIC
+                    toàn diện với cả
+                    bốn kỹ năng tiếng Anh.
+                </p>
+
+                <div class="course-info">
+                    <span>📚 4 kỹ năng</span>
+                    <span>⭐ Tổng hợp</span>
+                </div>
+
+                <div class="course-footer">
+
+                    <strong>Liên hệ học phí</strong>
+
+                    <a href="#contact" class="btn-primary">
+                        Tìm hiểu →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="course-note">
+            * Các khóa học và quyền lợi Premium
+            hiện là nội dung giới thiệu mẫu.
+            Chức năng thanh toán chưa được kích hoạt.
+        </p>
+
+    </section>
+
+
+    <!-- ABOUT CENTER -->
+
+    <section class="about section" id="about">
+
+        <div class="about-content">
+
+            <span class="section-label">
+                ABOUT US
+            </span>
+
+            <h2>
+                Giới thiệu
+                <span>TOEIC NOVA</span>
+            </h2>
+
+            <p>
+                TOEIC NOVA – Smart English Lab
+                hướng đến việc xây dựng một môi trường
+                học tiếng Anh hiện đại,
+                thuận tiện và dễ tiếp cận.
+            </p>
+
+            <p>
+                Nền tảng kết hợp các bài luyện
+                Listening, Speaking, Reading,
+                Writing và công cụ AI,
+                giúp học viên chủ động
+                trong quá trình học tập.
+            </p>
+
+            <div class="about-features">
+
+                <div>
+                    ✓ Luyện tập 4 kỹ năng
+                </div>
+
+                <div>
+                    ✓ Công cụ hỗ trợ AI
+                </div>
+
+                <div>
+                    ✓ Theo dõi tiến độ học tập
+                </div>
+
+                <div>
+                    ✓ Xây dựng thói quen học mỗi ngày
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="about-visual">
+
+            <div class="about-logo">
+                ✦
+            </div>
+
+            <h3>TOEIC NOVA</h3>
+
+            <p>SMART ENGLISH LAB</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features section" id="features">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                WHY CHOOSE US
+            </span>
+
+            <h2>Tính năng nổi bật</h2>
+
+            <p>
+                Những công cụ giúp bạn học TOEIC
+                chủ động và hiệu quả hơn.
+            </p>
+
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Tutor</h3>
+                <p>
+                    Hỏi đáp kiến thức TOEIC
+                    và nhận hỗ trợ học tập từ AI.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>4 kỹ năng</h3>
+                <p>
+                    Luyện Listening, Speaking,
+                    Reading và Writing.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Learning Streak</h3>
+                <p>
+                    Xây dựng thói quen
+                    học tập liên tục mỗi ngày.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Learning Progress</h3>
+                <p>
+                    Theo dõi kết quả
+                    và lịch sử học tập.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta section">
+
+        <h2>
+            Sẵn sàng bắt đầu
+            hành trình TOEIC?
+        </h2>
+
+        <p>
+            Tạo tài khoản và khám phá
+            không gian học TOEIC NOVA.
+        </p>
+
+        <a href="/learn?auth=register" class="btn-primary">
+            Bắt đầu miễn phí →
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>✦ TOEIC NOVA</h3>
+
+                <p>
+                    Smart English Lab
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>Khám phá</h4>
+
+                <a href="#courses">Khóa học</a>
+                <a href="#about">Giới thiệu</a>
+                <a href="#features">Tính năng</a>
+
+            </div>
+
+            <div>
+
+                <h4>Học tập</h4>
+
+                <a href="/learn">Trang học</a>
+                <a href="/learn?view=reading">Reading</a>
+                <a href="/learn?view=writing">Writing</a>
+
+            </div>
+
+            <div>
+
+                <h4>Liên hệ</h4>
+
+                <p>Địa chỉ: Đang cập nhật</p>
+                <p>Email: Đang cập nhật</p>
+                <p>Điện thoại: Đang cập nhật</p>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © <span id="year"></span>
+            TOEIC NOVA. All rights reserved.
+        </div>
+
+    </footer>
+
+    <script src="/landing.js"></script>
 
 </body>
+
 </html>

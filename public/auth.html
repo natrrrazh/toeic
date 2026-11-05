@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Đăng nhập | TOEIC NOVA</title>
+
+<style>
+
+:root {
+    --bg: #090b14;
+    --panel: #121628;
+    --line: #292f49;
+    --text: #f5f6ff;
+    --muted: #929ab8;
+    --purple: #a084ff;
+    --cyan: #5de7ef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #29204b,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            #103039,
+            transparent 40%
+        ),
+        var(--bg);
+}
+
+/* AUTH CARD */
+
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+
+    padding: 40px;
+
+    background: linear-gradient(
+        145deg,
+        #191f34,
+        #101421
+    );
+
+    border: 1px solid #a084ff55;
+    border-radius: 22px;
+
+    box-shadow: 0 25px 80px #0006;
+}
+
+/* LOGO */
+
+.logo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.logo span {
+    color: var(--cyan);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* TITLE */
+
+h1 {
+    text-align: center;
+    font-size: 27px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 9px;
+    color: #c5c9df;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+
+    background: #0c1020;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    color: white;
+    font-size: 14px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px #a084ff15;
+}
+
+input::placeholder {
+    color: #69728f;
+}
+
+/* BUTTON */
+
+.btn {
+    width: 100%;
+    padding: 15px;
+
+    background: linear-gradient(
+        100deg,
+        #9068ff,
+        #637cff
+    );
+
+    border: none;
+    border-radius: 11px;
+
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* SWITCH */
+
+.switch {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.switch button {
+    border: none;
+    background: transparent;
+
+    color: var(--cyan);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MESSAGE */
+
+.message {
+    margin: 15px 0;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.message.error {
+    color: #ff9ca9;
+}
+
+.message.success {
+    color: #68e6ac;
+}
+
+.back-home {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    color: var(--cyan);
+}
+
+#fullNameGroup[hidden] {
+    display: none;
+}
+
+@media(max-width:500px) {
+
+    .auth-container {
+        padding: 27px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LOGO -->
+
+    <div class="logo">
+        ✦ TOEIC <span>NOVA</span>
+    </div>
+
+    <div class="subtitle">
+        SMART ENGLISH LAB
+    </div>
+
+    <!-- TITLE -->
+
+    <h1 id="formTitle">
+        Chào mừng trở lại!
+    </h1>
+
+    <p class="description" id="formDescription">
+        Đăng nhập để tiếp tục hành trình
+        chinh phục TOEIC của bạn.
+    </p>
+
+    <!-- FORM -->
+
+    <form id="authForm">
+
+        <!-- FULL NAME -->
+
+        <div
+            class="form-group"
+            id="fullNameGroup"
+            hidden
+        >
+
+            <label for="fullName">
+                Họ và tên
+            </label>
+
+            <input
+                id="fullName"
+                type="text"
+                placeholder="Nhập họ và tên"
+                autocomplete="name"
+                maxlength="100"
+            >
+
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="example@gmail.com"
+                autocomplete="email"
+                maxlength="150"
+                required
+            >
+
+        </div>
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Mật khẩu
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Nhập mật khẩu"
+                autocomplete="current-password"
+                minlength="8"
+                maxlength="72"
+                required
+            >
+
+        </div>
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+        <!-- SUBMIT -->
+
+        <button
+            class="btn"
+            id="submitBtn"
+            type="submit"
+        >
+            Đăng nhập →
+        </button>
+
+    </form>
+
+    <!-- SWITCH -->
+
+    <div class="switch">
+
+        <span id="switchText">
+            Chưa có tài khoản?
+        </span>
+
+        <button
+            id="switchBtn"
+            type="button"
+        >
+            Đăng ký ngay
+        </button>
+
+    </div>
+
+    <!-- BACK HOME -->
+
+    <a href="/" class="back-home">
+        ← Quay về trang chủ
+    </a>
+
+</div>
+
+
+<script>
+
+// =====================================
+// TOEIC NOVA AUTHENTICATION
+// =====================================
+
+const $ = id => document.getElementById(id);
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+// Chỉ cho chuyển hướng về trang học
+function getNextPage() {
+
+    const requested = params.get("next");
+
+    if (!requested) {
+        return "/learn";
+    }
+
+    try {
+        const url = new URL(
+            requested,
+            window.location.origin
+        );
+
+        if (
+            url.origin !== window.location.origin ||
+            url.pathname !== "/learn"
+        ) {
+            return "/learn";
+        }
+
+        return url.pathname + url.search;
+
+    } catch {
+        return "/learn";
+    }
+}
+
+const nextPage = getNextPage();
+
+// Mặc định là đăng nhập
+let authMode = window.location.pathname === "/register"
+    ? "register"
+    : "login";
+
+// =====================================
+// CHANGE FORM
+// =====================================
+
+function setMode(mode) {
+
+    authMode = mode;
+
+    const isRegister = mode === "register";
+
+    $("formTitle").textContent = isRegister
+        ? "Tạo tài khoản mới"
+        : "Chào mừng trở lại!";
+
+    $("formDescription").textContent = isRegister
+        ? "Đăng ký để bắt đầu hành trình học TOEIC."
+        : "Đăng nhập để tiếp tục học TOEIC NOVA.";
+
+    $("fullNameGroup").hidden = !isRegister;
+
+    $("fullName").required = isRegister;
+
+    $("password").autocomplete = isRegister
+        ? "new-password"
+        : "current-password";
+
+    $("submitBtn").textContent = isRegister
+        ? "Đăng ký tài khoản →"
+        : "Đăng nhập →";
+
+    $("switchText").textContent = isRegister
+        ? "Đã có tài khoản?"
+        : "Chưa có tài khoản?";
+
+    $("switchBtn").textContent = isRegister
+        ? "Đăng nhập ngay"
+        : "Đăng ký ngay";
+
+    $("message").textContent = "";
+    $("message").className = "message";
+}
+
+$("switchBtn").addEventListener("click", () => {
+
+    setMode(
+        authMode === "login"
+            ? "register"
+            : "login"
+    );
+
+});
+
+// =====================================
+// API HELPER
+// =====================================
+
+async function callAPI(url, data) {
+
+    const response = await fetch(url, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        credentials: "same-origin",
+
+        body: JSON.stringify(data)
+
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || result.success === false) {
+
+        throw new Error(
+            result.message ||
+            "Có lỗi xảy ra. Vui lòng thử lại."
+        );
+
+    }
+
+    return result;
+}
+
+// =====================================
+// SUBMIT FORM
+// =====================================
+
+$("authForm").addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        const btn = $("submitBtn");
+        const message = $("message");
+
+        btn.disabled = true;
+
+        message.textContent = "";
+        message.className = "message";
+
+        const email = $("email").value.trim();
+        const password = $("password").value;
+
+        const payload = {
+            email,
+            password
+        };
+
+        if (authMode === "register") {
+            payload.full_name =
+                $("fullName").value.trim();
+        }
+
+        try {
+
+            if (authMode === "register") {
+
+                // Đăng ký tài khoản
+                await callAPI(
+                    "/api/auth/register",
+                    payload
+                );
+
+                // Chuyển sang đăng nhập
+                setMode("login");
+
+                $("password").value = "";
+
+                message.textContent =
+                    "✅ Đăng ký thành công! Hãy đăng nhập.";
+
+                message.className =
+                    "message success";
+
+            } else {
+
+                // Đăng nhập tài khoản
+                await callAPI(
+                    "/api/auth/login",
+                    payload
+                );
+
+                // Xác nhận session đã đăng nhập
+                const check = await fetch(
+                    "/api/auth/me",
+                    {
+                        credentials: "same-origin"
+                    }
+                );
+
+                if (!check.ok) {
+                    throw new Error(
+                        "Không xác nhận được phiên đăng nhập."
+                    );
+                }
+
+                const account = await check.json();
+
+                if (!account.user) {
+                    throw new Error(
+                        "Không tìm thấy thông tin tài khoản."
+                    );
+                }
+
+                message.textContent =
+                    "✅ Đăng nhập thành công!";
+
+                message.className =
+                    "message success";
+
+                // Vào giao diện học cũ
+                window.location.replace(nextPage);
+
+            }
+
+        } catch (error) {
+
+            message.textContent = error.message;
+            message.className = "message error";
+
+        } finally {
+
+            btn.disabled = false;
+
+        }
+
+    }
+);
+
+// =====================================
+// INITIALIZE
+// =====================================
+
+setMode(authMode);
+
+</script>
+
+</body>
+</html>

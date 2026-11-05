@@ -142,38 +142,48 @@ app.use("/api/writing", writingRoutes);
 
 
 
-// ========================================
+// 5 FRONTEND
 
-// 5. FRONTEND
-
-// ========================================
-
-// ========================================
-// 5. FRONTEND - TOEIC NOVA
-// ========================================
-
-// Trang chủ giới thiệu trung tâm
+// Landing Page
 app.get("/", (req, res) => {
     res.sendFile(
         path.join(__dirname, "public", "landing.html")
     );
 });
 
-// Trang học TOEIC
+// Trang đăng nhập / đăng ký
+app.get(["/login", "/register"], (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "public", "auth.html")
+    );
+});
+
+// Trang học - yêu cầu đăng nhập
 app.get("/learn", (req, res) => {
+
+    if (!req.session?.userId) {
+        return res.redirect("/login");
+    }
+
     res.sendFile(
         path.join(__dirname, "public", "learn.html")
     );
 });
 
-// Các file CSS, JavaScript và hình ảnh
-app.use(express.static(
-    path.join(__dirname, "public"), {
-        index: false
+// Ngăn mở trực tiếp file học khi chưa đăng nhập
+app.get(["/learn.html", "/index.html"], (req, res) => {
+    if (!req.session?.userId) {
+        return res.redirect("/login");
     }
+
+    return res.redirect("/learn");
+});
+
+// Static files
+app.use(express.static(
+    path.join(__dirname, "public"),
+    { index: false }
 ));
-
-
 // ========================================
 
 // 6. MIDDLEWARE YEU CAU DANG NHAP
